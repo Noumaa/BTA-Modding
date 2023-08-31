@@ -10,10 +10,15 @@
     <link rel="icon" type="image/png" href="{% static 'assets/images/logo.png' %}" />
     <title>{% block title %}BTA Modding{% endblock %}</title>
 
-    <link rel="stylesheet" href="{% static 'assets/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/markdown.css' %}">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/swup@4"></script>
 
     <script>
+        const swup = new Swup();
+
         tailwind.config = {
             theme: {
                 fontFamily: {
@@ -75,9 +80,11 @@
 {#    </div>#}
 </header>
 
-<div class="container mx-auto px-5">
-    {% block content %}
-    {% endblock %}
-</div>
+<main id="swup" class="transition-fade">
+    <div class="container mx-auto px-5">
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
 </body>
 </html>

@@ -10,6 +10,17 @@
     box-sizing: border-box;
 }
 
+/* Define a transition duration during page visits */
+html.is-changing .transition-fade {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
+  opacity: 0;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: #16181c;
