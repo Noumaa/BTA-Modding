@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load markdown %}
+
+{% block content %}
+
+    <div class="flex flex-row gap-3">
+        <div class="basis-1/4">
+            <div class="py-4 px-4 bg-card rounded-xl shadow-lg">
+                <img class="bg-background rounded-xl h-28 w-28" src="{% static 'icon.webp' %}" alt="{{ mod.label }} logo" />
+                <h2 class="text-2xl font-bold pt-2">{{ mod.label }}</h2>
+                <a class="font-medium hover:underline hover:text-white" href="{% url 'mods:list' %}">Mod</a>
+                <p class="pt-2">{{ mod.short_description }}</p>
+                <hr class="h-px my-3 bg-separator border-0">
+            </div>
+        </div>
+        <div class="basis-3/4">
+            <div class="py-4 px-4 bg-card rounded-xl shadow-lg">
+                {{ mod.description|markdown|safe }}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
