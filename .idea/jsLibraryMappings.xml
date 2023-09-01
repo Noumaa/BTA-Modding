@@ -2,5 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{@swup, flowbite, jquery-3.7.1, remarkdown.css, swup, toastify-js}" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>
