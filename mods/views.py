@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404, redirect
@@ -49,6 +50,8 @@ def version_download(request, username, mod_slug, version_slug):
     user = get_object_or_404(User, username=username)
     mod = get_object_or_404(Mod, slug=mod_slug, user=user)
     version = get_object_or_404(Version, mod=mod, slug=version_slug)
+
+    messages.success(request, 'Starting download..')
 
     return render(request, 'mods/detail.html', {
         'mod': mod,
