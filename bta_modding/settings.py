@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'users:login'
 
 
 # Internationalization

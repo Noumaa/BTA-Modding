@@ -31,7 +31,7 @@ class Mod(models.Model):
 class Version(models.Model):
     mod = models.ForeignKey(Mod, related_name='versions', on_delete=models.CASCADE)
     label = models.CharField(max_length=48)
-    slug = models.SlugField(null=False, unique=True)
+    slug = models.SlugField(null=False)
     changelog = MarkdownxField(null=True)
     file = models.FileField(upload_to=version_upload_path)
 

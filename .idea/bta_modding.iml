@@ -16,6 +16,9 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
       <excludeFolder url="file://$MODULE_DIR$/.idea/dataSources" />
+      <excludeFolder url="file://$MODULE_DIR$/media/mods/7" />
+      <excludeFolder url="file://$MODULE_DIR$/media/mods/8" />
+      <excludeFolder url="file://$MODULE_DIR$/media/mods/9" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
