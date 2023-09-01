@@ -34,7 +34,7 @@
             {% for mod in mods %}
                 <div class="my-3 py-4 px-4 bg-card rounded-xl shadow-lg flex justify-start">
                     <a href="{% url 'mods:detail' mod.user.username mod.slug %}">
-                        <img class="bg-background rounded-xl h-28 w-28" src="{% static 'icon.webp' %}" alt="{{ mod.label }} logo" />
+                        <img class="bg-background rounded-xl h-28 w-28" src="{{ mod.logo.url }}" alt="{{ mod.label }} logo" />
                     </a>
                     <div class="ps-4">
                         <div class="title flex items-baseline gap-2">
