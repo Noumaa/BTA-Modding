@@ -21,6 +21,10 @@ class Mod(models.Model):
     logo = models.ImageField(upload_to=avatar_upload_path, default="assets/images/mod_default.png")
     description = MarkdownxField()
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='mods', on_delete=models.CASCADE)
+    publish = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-publish"]
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -34,6 +38,10 @@ class Version(models.Model):
     slug = models.SlugField(null=False)
     changelog = MarkdownxField(null=True)
     file = models.FileField(upload_to=version_upload_path)
+    publish = models.DateField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-publish"]
 
     def save(self, *args, **kwargs):
         if not self.slug:

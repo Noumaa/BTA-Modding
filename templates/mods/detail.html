@@ -7,13 +7,13 @@
     <div class="flex flex-row gap-3">
         <div class="basis-1/4">
             <div class="p-5 bg-card rounded-xl shadow-lg">
-                <img class="bg-background rounded-xl h-28 w-28" src="{% static 'icon.webp' %}" alt="{{ mod.label }} logo" />
+                <img class="bg-background rounded-xl h-28 w-28" src="{{ mod.logo.url }}" alt="{{ mod.label }} logo" />
                 <h2 class="text-2xl font-bold pt-2">{{ mod.label }}</h2>
                 <a class="font-medium hover:underline hover:text-white" href="{% url 'mods:list' %}">
 
                     <div class="flex items-center gap-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"></path>
                         </svg>
                         Mod
                     </div>
