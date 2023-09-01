@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/markdown.css' %}">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/swup@4"></script>
 
@@ -30,6 +32,7 @@
                         background: '#434956',
                         separator: '#474b54',
                         backgrounddark: '#36393f',
+                        version: '#b0bac5',
                     }
                 }
             }
@@ -49,7 +52,16 @@
             <div class="flex md:order-2">
                 <button type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Sign In
+                    {% if user.is_authenticated %}
+                        {{ user.username }}
+                    {% else %}
+                        <div class="flex items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
+                            </svg>
+                            Sign In
+                        </div>
+                    {% endif %}
                 </button>
                 <button data-collapse-toggle="navbar-cta" type="button"
                         class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -62,15 +74,15 @@
                     </svg>
                 </button>
             </div>
-            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
-                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0">
-                    <li>
-                        <a href="{% url 'mods:list' %}"
-                           class="block py-2 pl-3 pr-4 rounded"
-                           aria-current="page">Mods</a>
-                    </li>
-                </ul>
-            </div>
+{#            <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">#}
+{#                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0">#}
+{#                    <li>#}
+{#                        <a href="{% url 'mods:list' %}"#}
+{#                           class="block py-2 pl-3 pr-4 rounded"#}
+{#                           aria-current="page">Mods</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            </div>#}
         </div>
     </nav>
 
@@ -87,5 +99,32 @@
         {% endblock %}
     </div>
 </main>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+<script>
+
+    {% if messages %}
+            {% for message in messages %}
+                Toastify({
+                    text: "{{ message }}",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top", // `top` or `bottom`
+                    position: "left", // `left`, `center` or `right`
+                    stopOnFocus: true, // Prevents dismissing of toast on hover
+                    style: {
+                        background: "red",
+                    },
+                    onClick: function() {}
+                }).showToast();
+                {#<li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+            {% endfor %}
+    {% endif %}
+
+</script>
+
 </body>
 </html>

@@ -22,6 +22,7 @@
     <orderEntry type="library" name="swup" level="application" />
     <orderEntry type="library" name="@swup" level="application" />
     <orderEntry type="library" name="remarkdown.css" level="application" />
+    <orderEntry type="library" name="toastify-js" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
