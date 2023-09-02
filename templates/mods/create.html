@@ -42,7 +42,7 @@
             </div>
 
             <div class="mb-6">
-                <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                <div id="editor" class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
                     <div class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
                         <div class="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600">
                             <div class="flex items-center space-x-1 sm:pr-4">
@@ -170,9 +170,29 @@
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Submit
             </button>
+
+            <div id="example"></div>
+
         </form>
     </div>
 
     {{ form.media }}
 
 {% endblock %}
+
+{#{% block extrascript %}#}
+{##}
+{#    <script>#}
+{#        const Editor = toastui.Editor;#}
+{##}
+{#        const editor = new Editor({#}
+{#          el: document.querySelector('#editor'),#}
+{#          height: '500px',#}
+{#          initialEditType: 'markdown',#}
+{#          previewStyle: 'vertical'#}
+{#        });#}
+{##}
+{#        editor.getMarkdown();#}
+{#    </script>#}
+{##}
+{#{% endblock %}#}

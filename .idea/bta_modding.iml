@@ -29,6 +29,9 @@
     <orderEntry type="library" name="toastify-js" level="application" />
     <orderEntry type="library" name="jquery-3.7.1" level="application" />
     <orderEntry type="library" name="flowbite" level="application" />
+    <orderEntry type="library" name="@toast-ui/editor" level="application" />
+    <orderEntry type="library" name="toastui-editor" level="application" />
+    <orderEntry type="library" name="toastui-editor-all" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
