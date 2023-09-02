@@ -10,4 +10,10 @@ class ModSubmitForm(ModelForm):
 
     class Meta:
         model = Mod
-        exclude = ['slug', 'user']
+        exclude = ['slug', 'user', 'publish']
+
+
+class ModEditForm(ModelForm):
+    class Meta:
+        model = Mod
+        exclude = ['slug', 'user', 'publish']
