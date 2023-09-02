@@ -10,7 +10,7 @@
   - [x] Edit
   - [x] Markdown
     - [ ] WYSIWYG
-  - [ ] Logo
+  - [x] Logo
   - [ ] Remove
 
 - [ ] Versions
