@@ -2,21 +2,30 @@
 
 {% block content %}
 
-    <form method="post" class="card" novalidate>
-	  	{% csrf_token %}
-	    <h2 class="text-center">Log in to your account</h2>
-		{% for field in form %}
-            {{ field.label_tag }}
-            {{ field }}
-            {% if field.errors %}
-                <small>{{ field.errors|striptags }}</small>
-            {% endif %}
-		{% endfor %}
+    <div class="mx-0 md:mx-10 p-5 bg-card rounded-xl shadow-lg">
+        <h2 class="text-center font-bold text-4xl mb-4">Sign in</h2>
+        <form method="post" class="card" novalidate>
+            {% csrf_token %}
 
-		<input type="submit" value="Login" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-		<hr>
-		<p class="text-center">Forgot your password <a href="#">Reset Password</a></p>
-		<p class="text-center">Don't have a account? <a href="#">Join Now</a></p>
-	</form>
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+            <input type="text" name="username" id="id_username"
+                   class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Username" required>
+            {{ form.username.errors }}
+
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <input type="password" name="password" id="id_password"
+                   class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Password" required>
+            {{ form.password.errors }}
+
+            <input type="submit" value="Sign in" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+
+            <hr class="h-px my-3 bg-separator border-0">
+
+            <p class="text-center">Forgot your password <a class="underline hover:text-white" href="#">Reset Password</a></p>
+            <p class="text-center">Don't have a account? <a class="underline hover:text-white" href="{% url 'users:register' %}">Join Now</a></p>
+        </form>
+    </div>
 
 {% endblock %}

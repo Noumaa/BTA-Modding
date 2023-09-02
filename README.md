@@ -11,9 +11,20 @@
   - [x] Markdown
     - [ ] WYSIWYG
   - [ ] Logo
+  - [ ] Remove
 
-- [x] Versions
+- [ ] Versions
   - [x] Detail
   - [x] Download
   - [x] List by mods
   - [x] Do an update
+  - [ ] Remove
+
+- [ ] Users
+  - [x] Sign in
+  - [x] Register
+  - [ ] Email
+    - [ ] Forget password
+  - [ ] Profile
+  - [ ] Settings *(useless for now)*
+  - [ ] Remove

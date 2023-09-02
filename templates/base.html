@@ -16,14 +16,6 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/swup@4"></script>
-
-    <script>
-        const swup = new Swup();
-    </script>
-
 </head>
 <body>
 <header>
@@ -121,9 +113,15 @@
             <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
                 <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0">
                     <li>
+                        {% url 'home:home' as home %}
+                        <a href="{{ home }}"
+                           class="{% if home == request.path %}text-white{% endif %} hover:underline hover:underline-offset-2 block py-2 pl-3 pr-4 rounded"
+                           aria-current="page">Home</a>
+                    </li>
+                    <li>
                         {% url 'mods:list' as mods_list %}
                         <a href="{{ mods_list }}"
-                           class="{% if mods_list == request.path %}text-white{% endif %} block py-2 pl-3 pr-4 rounded"
+                           class="{% if mods_list == request.path %}text-white{% endif %} hover:underline hover:underline-offset-2 block py-2 pl-3 pr-4 rounded"
                            aria-current="page">Mods</a>
                     </li>
                 </ul>
@@ -151,6 +149,8 @@
 </footer>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
 <script>
 
