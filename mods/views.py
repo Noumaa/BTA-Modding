@@ -2,10 +2,10 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
 
-from mods.forms import ModSubmitForm, ModEditForm
+from mods.forms import ModSubmitForm, ModEditForm, VersionSubmitForm
 from mods.models import Mod, Version
 
 
@@ -16,6 +16,10 @@ def mods_list(request):
 
     if query is not None:
         mods = mods.filter(Q(label__icontains=query) | Q(short_description__icontains=query))
+
+    mods = mods\
+        .annotate(last_version_publish=Max('versions__publish'))\
+        .order_by('-last_version_publish')
 
     return render(request, 'mods/list.html', {
         'mods': mods
@@ -53,20 +57,7 @@ def mods_detail(request, username, mod_slug):
     })
 
 
-def version_download(request, username, mod_slug, version_slug):
-    user = get_object_or_404(User, username=username)
-    mod = get_object_or_404(Mod, slug=mod_slug, user=user)
-    version = get_object_or_404(Version, mod=mod, slug=version_slug)
-
-    messages.success(request, 'Starting download..')
-
-    return render(request, 'mods/detail.html', {
-        'mod': mod,
-        'versions': mod.versions.all(),
-        'version': version
-    })
-
-
+@login_required
 def mods_edit(request, username, mod_slug):
     user = get_object_or_404(User, username=username)
     mod = get_object_or_404(Mod, slug=mod_slug, user=user)
@@ -82,4 +73,49 @@ def mods_edit(request, username, mod_slug):
     return render(request, 'mods/edit.html', {
         'mod': mod,
         'form': form
+    })
+
+
+def version_list(request, username, mod_slug):
+    user = get_object_or_404(User, username=username)
+    mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+
+    return render(request, 'mods/version-list.html', {
+        'mod': mod,
+        'versions': mod.versions.all(),
+    })
+
+
+def version_detail(request, username, mod_slug, version_slug):
+    user = get_object_or_404(User, username=username)
+    mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+    version = get_object_or_404(Version, mod=mod, slug=version_slug)
+
+    return render(request, 'mods/version-detail.html', {
+        'mod': mod,
+        'version': version,
+        'versions': mod.versions.all(),
+    })
+
+
+@login_required
+def version_create(request, username, mod_slug):
+    user = get_object_or_404(User, username=username)
+    mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+
+    form = VersionSubmitForm()
+    if request.method == "POST":
+        form = VersionSubmitForm(request.POST, request.FILES)
+        if form.is_valid():
+            version = form.save(commit=False)
+            version.mod = mod
+            version.save()
+
+            messages.success(request, "Mod updated!")
+            return redirect('mods:version-detail', username=username, mod_slug=mod_slug, version_slug=version.slug)
+
+    return render(request, 'mods/version-create.html', {
+        'mod': mod,
+        'form': form,
+        'versions': mod.versions.all(),
     })

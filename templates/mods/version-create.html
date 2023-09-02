@@ -6,19 +6,19 @@
             {% csrf_token %}
 
             <div class="mb-6">
-                <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mod
-                    name</label>
+                <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Version</label>
                 <input type="text" name="label" id="id_label"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Too Many Items" value="{{ form.label.value }}" required>
+                       placeholder="Previous: {{ versions.first.label }}" required>
             </div>
 
             <div class="mb-6">
-                <label for="short_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short
-                    description</label>
-                <input type="text" name="short_description" id="id_short_description"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Offers you to see all items in Minecraft" value="{{ form.short_description.value }}" required>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file">Upload file</label>
+                <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
+                              bg-gray-50 dark:text-gray-400 focus:outline-none
+                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                       aria-describedby="file_input_help" name="file" id="id_file" type="file">
+                {#                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>#}
             </div>
 
             <div class="mb-6">
@@ -128,10 +128,10 @@
                         </div>
                     </div>
                     <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-gray-800">
-                        <label for="description" class="sr-only">Publish post</label>
-                        <textarea name="description" id="id_description" rows="8"
+                        <label for="changelog" class="sr-only">Publish post</label>
+                        <textarea name="changelog" id="id_changelog" rows="8"
                                   class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                                  placeholder="Write a description..." required>{{ form.description.value }}</textarea>
+                                  placeholder="Write a changelog..." required></textarea>
                     </div>
                 </div>
             </div>

@@ -5,9 +5,14 @@ from mods import views
 app_name = 'mods'
 
 urlpatterns = [
-    path('', views.mods_list, name='list'),
-    path('publish', views.mods_create, name='create'),
+    path('mods/', views.mods_list, name='list'),
+    path('mods/publish', views.mods_create, name='create'),
+
     path('<str:username>/<slug:mod_slug>', views.mods_detail, name='detail'),
     path('<str:username>/<slug:mod_slug>/settings', views.mods_edit, name='edit'),
-    path('<str:username>/<slug:mod_slug>/<slug:version_slug>', views.version_download, name='version-download'),
+
+    path('<str:username>/<slug:mod_slug>/versions', views.version_list, name='version-list'),
+    path('<str:username>/<slug:mod_slug>/versions/publish', views.version_create, name='version-create'),
+
+    path('<str:username>/<slug:mod_slug>/version/<slug:version_slug>', views.version_detail, name='version-detail'),
 ]

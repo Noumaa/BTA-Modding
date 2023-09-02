@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from mods.models import Mod
+from mods.models import Mod, Version
 
 
 class ModSubmitForm(ModelForm):
@@ -17,3 +17,9 @@ class ModEditForm(ModelForm):
     class Meta:
         model = Mod
         exclude = ['slug', 'user', 'publish']
+
+
+class VersionSubmitForm(ModelForm):
+    class Meta:
+        model = Version
+        exclude = ['slug', 'mod', 'publish']

@@ -48,7 +48,7 @@
                             <a href="{% url 'mods:detail' mod.user.username mod.slug %}">
                                 <h2 class="text-2xl font-bold">{{ mod.label }}</h2>
                             </a>
-                            <p class="author"> by <a href="#" class="title-link">{{ mod.user.username }}</a></p>
+                            <p class="author"> by <a href="#" class="underline hover:text-gray-500">{{ mod.user.username }}</a></p>
                         </div>
                         <p>{{ mod.short_description }}</p>
                     </div>
