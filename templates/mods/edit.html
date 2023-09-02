@@ -13,12 +13,23 @@
                        placeholder="Too Many Items" value="{{ form.label.value }}" required>
             </div>
 
-            <div class="mb-6">
-                <label for="short_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short
-                    description</label>
-                <input type="text" name="short_description" id="id_short_description"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Offers you to see all items in Minecraft" value="{{ form.short_description.value }}" required>
+            <div class="flex flex-row gap-6 mb-6">
+                <div class="basis-3/4">
+                    <label for="short_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short
+                        description</label>
+                    <input type="text" name="short_description" id="id_short_description"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Offers you to see all items in Minecraft" value="{{ form.short_description.value }}" required>
+                </div>
+
+                <div class="basis-1/4">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="logo">Mod logo</label>
+                    <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
+                                  bg-gray-50 dark:text-gray-400 focus:outline-none
+                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                           aria-describedby="file_input_help" name="logo" id="id_logo" value="{{ form.logo.value }}" type="file">
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 1024x1024px).</p>
+                </div>
             </div>
 
             <div class="mb-6">

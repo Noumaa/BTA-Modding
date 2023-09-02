@@ -10,7 +10,7 @@ def version_upload_path(instance, filename):
 
 
 def avatar_upload_path(instance, filename):
-    return f'mods/{instance.mod.pk}/{filename}'
+    return f'mods/{instance.pk}/{filename}'
 
 
 # Create your models here.
