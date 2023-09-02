@@ -12,8 +12,8 @@
     - [ ] WYSIWYG
   - [ ] Logo
 
-- [ ] Versions
-  - [ ] Detail
-  - [ ] Download
-  - [ ] List by mods
-  - [ ] Do an update
+- [x] Versions
+  - [x] Detail
+  - [x] Download
+  - [x] List by mods
+  - [x] Do an update
