@@ -13,6 +13,7 @@ npm install
 ```
 
 Don't forget to migrate to your database (by default `./db.sqlite`)
+> NOTE: don't forget you can overwrite `bta_modding/settings.py` with a `.local.py` file!
 ```shell
 python manage.py migrate
 ```
@@ -26,8 +27,6 @@ And don't forget to run nodemon to listen for `.html` and `.css` changes, useful
 ```shell
 npm run dev
 ```
-
-> NOTE: don't forget you can overwrite `bta_modding/settings.py` with a `.local.py` file!
 
 ## Todo
 
