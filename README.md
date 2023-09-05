@@ -4,7 +4,7 @@ Mod repository website for Better Than Adventure!
 
 ## Contributing
 
-> To set up your development environment, follow this quick guide:
+To set up your development environment, follow this quick guide:
 
 After cloning the project you must install pip and npm dependencies.
 ```shell
@@ -26,6 +26,8 @@ And don't forget to run nodemon to listen for `.html` and `.css` changes, useful
 ```shell
 npm run dev
 ```
+
+> NOTE: don't forget you can overwrite `bta_modding/settings.py` with a `.local.py` file!
 
 ## Todo
 
