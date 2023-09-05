@@ -5,24 +5,32 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
 
-from mods.forms import ModSubmitForm, ModForm, VersionSubmitForm
+from mods.forms import ModSubmitForm, ModForm, VersionSubmitForm, ModFilterForm
 from mods.models import Mod, Version
 
 
 # Create your views here.
 def mods_list(request):
     mods = Mod.objects.all()
-    query = request.GET.get('q')
+    form = ModFilterForm(request.GET)
 
-    if query is not None:
-        mods = mods.filter(Q(label__icontains=query) | Q(short_description__icontains=query))
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        categories = form.cleaned_data['categories']
+
+        if query:
+            mods = mods.filter(Q(label__icontains=query) | Q(short_description__icontains=query))
+
+        if categories:
+            mods = mods.filter(categories__in=categories)
 
     mods = mods \
         .annotate(last_version_publish=Max('versions__publish')) \
         .order_by('-last_version_publish')
 
     return render(request, 'mods/list.html', {
-        'mods': mods
+        'mods': mods,
+        'form': form
     })
 
 

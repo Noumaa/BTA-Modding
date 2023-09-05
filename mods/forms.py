@@ -15,6 +15,11 @@ class ModSubmitForm(ModForm):
     version_file = forms.FileField()
 
 
+class ModFilterForm(forms.Form):
+    query = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Rechercher un mod'}))
+    categories = forms.MultipleChoiceField(required=False, choices=Mod.Categories.choices)
+
+
 class VersionSubmitForm(ModelForm):
     class Meta:
         model = Version
