@@ -34,6 +34,12 @@ class Mod(models.Model):
             self.slug = slugify(self.label)
         return super().save(*args, **kwargs)
 
+    def get_downloads(self):
+        count = 0
+        for version in self.versions.all():
+            count += version.downloads
+        return count
+
 
 class Version(models.Model):
     mod = models.ForeignKey(Mod, related_name='versions', on_delete=models.CASCADE)
@@ -42,6 +48,7 @@ class Version(models.Model):
     changelog = MarkdownxField(null=True)
     file = models.FileField(upload_to=version_upload_path)
     publish = models.DateTimeField(auto_now_add=True)
+    downloads = models.IntegerField(default=0)
 
     class Meta:
         ordering = ["-publish"]

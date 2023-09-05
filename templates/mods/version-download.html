@@ -1,0 +1,27 @@
+{% extends 'mods/_mod_layout.html' %}
+
+{% block main %}
+
+    <div class="p-5 bg-card rounded-xl shadow-lg">
+        <h1>Download started</h1>
+        <h2>You'll be redirected in a few seconds..</h2>
+    </div>
+
+{% endblock %}
+
+{% block extrascript %}
+
+    <script>
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = '{{ version.file.url }}';
+        document.body.appendChild(a);
+        a.click();
+
+        setTimeout(function () {
+            window.location.href = '{% url 'mods:version-detail' version.mod.user.username version.mod.slug version.slug %}'
+        }, 5000);
+
+    </script>
+
+{% endblock %}

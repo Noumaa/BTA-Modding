@@ -15,4 +15,5 @@ urlpatterns = [
     path('<str:username>/<slug:mod_slug>/versions/publish', views.version_create, name='version-create'),
 
     path('<str:username>/<slug:mod_slug>/version/<slug:version_slug>', views.version_detail, name='version-detail'),
+    path('<str:username>/<slug:mod_slug>/version/<slug:version_slug>/download', views.version_download, name='version-download'),
 ]

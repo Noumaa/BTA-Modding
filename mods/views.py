@@ -17,8 +17,8 @@ def mods_list(request):
     if query is not None:
         mods = mods.filter(Q(label__icontains=query) | Q(short_description__icontains=query))
 
-    mods = mods\
-        .annotate(last_version_publish=Max('versions__publish'))\
+    mods = mods \
+        .annotate(last_version_publish=Max('versions__publish')) \
         .order_by('-last_version_publish')
 
     return render(request, 'mods/list.html', {
@@ -125,5 +125,20 @@ def version_create(request, username, mod_slug):
     return render(request, 'mods/version-create.html', {
         'mod': mod,
         'form': form,
+        'versions': mod.versions.all(),
+    })
+
+
+def version_download(request, username, mod_slug, version_slug):
+    user = get_object_or_404(User, username=username)
+    mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+    version = get_object_or_404(Version, mod=mod, slug=version_slug)
+
+    version.downloads += 1
+    version.save()
+
+    return render(request, 'mods/version-download.html', {
+        'mod': mod,
+        'version': version,
         'versions': mod.versions.all(),
     })
