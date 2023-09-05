@@ -1,15 +1,56 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-    <div class="mx-14 flex flex-row gap-3">
-        <div class="basis-3/4 p-5 bg-card rounded-xl shadow-lg">
-            <h1 class="text-4xl font-bold">BTA Modding</h1>
+    <div class="flex flex-col items-center justify-center" style="margin-top: 20%; margin-bottom: 20%;">
+        <h1 class="text-5xl">Better Than Curseforge.</h1>
+        <h2 class="text-3xl text-gray-400">Mod repository for BTA</h2>
+
+        <div class="flex flew-row gap-3">
+        <a
+          class="mt-6 group relative flex select-none items-center hover:cursor-pointer gap-3 overflow-hidden rounded-lg bg-none border-4 py-3.5 px-7 pr-[72px] text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-light-blue-500/20 transition-all hover:shadow-lg hover:shadow-light-blue-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          href="{% url 'mods:list' %}"
+          data-ripple-light="true"
+        >
+          Browse mods
+          <span class="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418"></path>
+                </svg>
+
+          </span>
+        </a>
+
+        <a
+          class="mt-6 group relative flex select-none items-center hover:cursor-pointer gap-3 overflow-hidden rounded-lg bg-gradient-to-tr from-light-blue-600 to-light-blue-400 bg-indigo-500 py-3.5 px-7 pr-[72px] text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-light-blue-500/20 transition-all hover:shadow-lg hover:shadow-light-blue-500/40 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          href="https://discord.gg/3fcBpNKmGA"
+          target="_blank"
+          rel="nofollow"
+          data-ripple-light="true"
+        >
+          Join our Discord
+          <span class="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
+            <img src="{% static 'assets/images/discord-logo.png' %}" alt="metamask" class="h-6 w-6" />
+          </span>
+        </a>
         </div>
 
-        <div class="basis-1/4 p-5 border border-card border-4 rounded-xl shadow-lg">
-            <h1 class="text-4xl font-bold">Join Discord</h1>
-        </div>
+{#        <img class="mt-6" src="{% static 'assets/images/cta-discord.png' %}" alt="Banner to invite you on BTA's discord">#}
     </div>
 
+{#    <div class="mx-14 flex flex-row gap-3">#}
+{#        <div class="basis-3/4 p-5 bg-card rounded-xl shadow-lg">#}
+{#            <h1 class="text-4xl font-bold">BTA Modding</h1>#}
+{#        </div>#}
+{##}
+{#        <div class="basis-1/4 p-5 border border-card border-4 rounded-xl shadow-lg">#}
+{#            <h1 class="text-4xl font-bold">Join Discord</h1>#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock %}
+
+{% block extrascript %}
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
 {% endblock %}

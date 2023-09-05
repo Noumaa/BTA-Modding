@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{@swup, @toast-ui/editor, flowbite, jquery-3.7.1, js-confetti, remarkdown.css, swup, tippy.js, toastify-js, toastui-editor, toastui-editor-all}" />
+    <file url="file://$PROJECT_DIR$" libraries="{@material-tailwind/html, @swup, @toast-ui/editor, flowbite, jquery-3.7.1, js-confetti, remarkdown.css, swup, tippy.js, toastify-js, toastui-editor, toastui-editor-all}" />
     <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

@@ -20,12 +20,11 @@
 </head>
 <body>
 <header>
-
     <nav class="container mx-auto">
         <div class="flex flex-wrap items-center justify-between mx-auto p-3">
             <a href="{% url 'home:home' %}" class="flex items-center">
                 <img src="{% static 'assets/images/logo.png' %}" class="h-8 mr-3" alt="BTA Modding logo"/>
-                <span class="self-center text-2xl font-title whitespace-nowrap dark:text-white">BTA Modding</span>
+                <span class="self-center text-2xl font-title whitespace-nowrap text-white">Better Than Curseforge</span>
             </a>
             <div class="flex md:order-2">
 
@@ -132,7 +131,7 @@
 
 </header>
 
-<main class="container mx-auto px-5">
+<main class="container mx-auto">
     {% block content %}
     {% endblock %}
 </main>
