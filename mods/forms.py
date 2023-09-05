@@ -1,10 +1,19 @@
 from django import forms
 from django.forms import ModelForm
 
-from mods.models import Mod, Version
+from mods.models import Mod, Version, Category
+
+
+def get_choices_for_category():
+    choices = []
+    for category in Category.objects.all():
+        choices += [(category.pk, category.label)]
+    return choices
 
 
 class ModForm(ModelForm):
+    categories = forms.MultipleChoiceField(required=True, choices=get_choices_for_category, widget=forms.CheckboxSelectMultiple)
+
     class Meta:
         model = Mod
         exclude = ['slug', 'user', 'publish', 'views']
@@ -17,7 +26,7 @@ class ModSubmitForm(ModForm):
 
 class ModFilterForm(forms.Form):
     query = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Rechercher un mod'}))
-    categories = forms.MultipleChoiceField(required=False, choices=Mod.Categories.choices)
+    categories = forms.MultipleChoiceField(required=False, choices=get_choices_for_category, widget=forms.CheckboxSelectMultiple)
 
 
 class VersionSubmitForm(ModelForm):

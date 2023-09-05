@@ -8,7 +8,7 @@
 
             <div class="flex flex-row gap-6 mb-6">
                 <div class="basis-3/4">
-                    <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mod
+                    <label for="label" class="block mb-2 text-sm font-medium text-white">Mod
                         name</label>
                     <input type="text" name="label" id="id_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -16,7 +16,7 @@
                     {{ form.label.errors }}
                 </div>
                 <div class="basis-1/4">
-                    <label for="version_label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Version</label>
+                    <label for="version_label" class="block mb-2 text-sm font-medium text-white">Version</label>
                     <input type="text" name="version_label" id="id_version_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="1.0" required>
@@ -24,9 +24,9 @@
                 </div>
             </div>
 
-            <div class="flex flex-row gap-6 mb-6">
+            <div class="flex flex-row gap-6 mb-5">
                 <div class="basis-3/4">
-                    <label for="short_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short
+                    <label for="short_description" class="block mb-2 text-sm font-medium text-white">Short
                         description</label>
                     <input type="text" name="short_description" id="id_short_description"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -35,7 +35,7 @@
                 </div>
 
                 <div class="basis-1/4">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="version_file">Mod logo</label>
+                    <label class="block mb-2 text-sm font-medium text-white" for="version_file">Mod logo</label>
                     <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
                                   bg-gray-50 dark:text-gray-400 focus:outline-none
                                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -43,6 +43,12 @@
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 1024x1024px).</p>
                     {{ form.logo.errors }}
                 </div>
+            </div>
+
+            <div class="mb-6">
+                <label class="block mb-2 text-sm font-medium text-white" for="version_file">Categories</label>
+                {{ form.categories }}
+                {{ form.categories.errors }}
             </div>
 
             <div class="mb-6">

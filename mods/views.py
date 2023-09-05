@@ -49,6 +49,8 @@ def mods_create(request):
             mod.save()
             version.save()
 
+            form.save_m2m()
+
             return redirect('mods:detail', username=request.user.username, mod_slug=mod.slug)
 
     else:

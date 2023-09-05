@@ -14,6 +14,16 @@ def avatar_upload_path(instance, filename):
     return f'mods/{instance.pk}/{filename}'
 
 
+class Category(models.Model):
+    label = models.CharField(max_length=48)
+    slug = models.SlugField(null=False, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.label)
+        return super().save(*args, **kwargs)
+
+
 # Create your models here.
 class Mod(models.Model):
     class Categories(models.TextChoices):
@@ -27,7 +37,7 @@ class Mod(models.Model):
     description = MarkdownxField()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='mods', on_delete=models.CASCADE)
-    categories = models.CharField(max_length=30, choices=Categories.choices)
+    categories = models.ManyToManyField(Category)
 
     slug = models.SlugField(null=False, unique=True)
     publish = models.DateTimeField(auto_now_add=True)
