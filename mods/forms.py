@@ -25,7 +25,7 @@ class ModSubmitForm(ModForm):
 
 
 class ModFilterForm(forms.Form):
-    query = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Rechercher un mod'}))
+    query = forms.CharField(required=False, widget=forms.TextInput(attrs={'type': 'hidden'}))
     categories = forms.MultipleChoiceField(required=False, choices=get_choices_for_category, widget=forms.CheckboxSelectMultiple)
 
 
