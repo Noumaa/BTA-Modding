@@ -32,6 +32,8 @@
     <orderEntry type="library" name="@toast-ui/editor" level="application" />
     <orderEntry type="library" name="toastui-editor" level="application" />
     <orderEntry type="library" name="toastui-editor-all" level="application" />
+    <orderEntry type="library" name="tippy.js" level="application" />
+    <orderEntry type="library" name="js-confetti" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

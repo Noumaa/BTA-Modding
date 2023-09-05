@@ -16,12 +16,15 @@ def avatar_upload_path(instance, filename):
 # Create your models here.
 class Mod(models.Model):
     label = models.CharField(max_length=48)
-    slug = models.SlugField(null=False, unique=True)
+    logo = models.ImageField(upload_to=avatar_upload_path, default="mod_default.png")
     short_description = models.CharField(max_length=128)
-    logo = models.ImageField(upload_to=avatar_upload_path, default="assets/images/mod_default.png")
     description = MarkdownxField()
+
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='mods', on_delete=models.CASCADE)
+
+    slug = models.SlugField(null=False, unique=True)
     publish = models.DateTimeField(auto_now_add=True)
+    views = models.IntegerField(default=0)
 
     class Meta:
         ordering = ["-publish"]

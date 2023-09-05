@@ -7,25 +7,31 @@
         <form method="post" class="card" novalidate>
             {% csrf_token %}
 
-            <label for="username" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Username</label>
+            <label for="username" class="mt-6 block mb-2 text-sm font-medium text-white">Username</label>
             <input type="text" name="username" id="id_username" autocomplete="username"
-                   class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="Username" required>
             {{ form.username.errors }}
 
-            <label for="password1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+            <label for="email" class="mt-6 block mb-2 text-sm font-medium text-white">Email Address</label>
+            <input type="email" name="email" id="id_email" autocomplete="username"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   placeholder="Email Address" required>
+            {{ form.email.errors }}
+
+            <label for="password1" class="mt-6 block mb-2 text-sm font-medium text-white">Password</label>
             <input type="password" name="password1" id="id_password1" autocomplete="new-password"
-                   class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="Password" required>
             {{ form.password1.errors }}
 
-            <label for="password2" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm password</label>
+            <label for="password2" class="mt-6 block mb-2 text-sm font-medium text-white">Confirm password</label>
             <input type="password" name="password2" id="id_password2" autocomplete="new-password"
-                   class="mb-6 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                    placeholder="Confirm password" required>
             {{ form.password2.errors }}
 
-            <input type="submit" value="Register" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            <input type="submit" value="Register" class="mt-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
 
             <hr class="h-px my-3 bg-separator border-0">
 

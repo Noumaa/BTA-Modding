@@ -23,9 +23,19 @@
 
             <hr class="h-px my-3 bg-separator border-0">
 
-            <p class="text-center">Forgot your password <a class="underline hover:text-white" href="#">Reset Password</a></p>
+            <p class="text-center">Forgot your password <a id="resetPwd" class="underline hover:text-white" href="#">Reset Password</a></p>
             <p class="text-center">Don't have a account? <a class="underline hover:text-white" href="{% url 'users:register' %}">Join Now</a></p>
         </form>
     </div>
+
+{% endblock %}
+
+{% block extrascript %}
+
+    <script>
+        tippy('#resetPwd', {
+            content: 'WIP feature !',
+        });
+    </script>
 
 {% endblock %}

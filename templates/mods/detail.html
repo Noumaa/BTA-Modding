@@ -8,3 +8,14 @@
     </div>
 
 {% endblock %}
+
+{% block extrascript %}
+
+    {% if mod.views == 1 %}
+        <script>
+            const jsConfetti = new JSConfetti()
+            jsConfetti.addConfetti()
+        </script>
+    {% endif %}
+
+{% endblock %}

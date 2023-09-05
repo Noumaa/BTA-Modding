@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.template.context_processors import csrf
 from django.urls import reverse_lazy
 
+from users.forms import RegisterForm
+
 
 # Create your views here.
 class MyLoginView(LoginView):
@@ -20,12 +22,14 @@ class MyLoginView(LoginView):
 
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('home:home')
+            return redirect('users:login')  # TODO authenticate instand of redirect to login page
+
+        messages.error(request, 'Invalid form ')
     else:
-        form = UserCreationForm()
+        form = RegisterForm()
 
     token = {}
     token.update(csrf(request))

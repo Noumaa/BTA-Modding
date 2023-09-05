@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
 
-from mods.forms import ModSubmitForm, ModEditForm, VersionSubmitForm
+from mods.forms import ModSubmitForm, ModForm, VersionSubmitForm
 from mods.models import Mod, Version
 
 
@@ -40,8 +40,12 @@ def mods_create(request):
             mod.user = request.user
             mod.save()
             version.save()
+
+            return redirect('mods:detail', username=request.user.username, mod_slug=mod.slug)
+
     else:
         form = ModSubmitForm()
+
     return render(request, 'mods/create.html', {
         'form': form,
     })
@@ -50,6 +54,10 @@ def mods_create(request):
 def mods_detail(request, username, mod_slug):
     user = get_object_or_404(User, username=username)
     mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+
+    mod.views += 1
+    mod.save()
+
     return render(request, 'mods/detail.html', {
         'mod': mod,
         'versions': mod.versions.all(),
@@ -62,9 +70,9 @@ def mods_edit(request, username, mod_slug):
     user = get_object_or_404(User, username=username)
     mod = get_object_or_404(Mod, slug=mod_slug, user=user)
 
-    form = ModEditForm(instance=mod)
+    form = ModForm(instance=mod)
     if request.method == "POST":
-        form = ModEditForm(request.POST, request.FILES, instance=mod)
+        form = ModForm(request.POST, request.FILES, instance=mod)
         if form.is_valid():
             form.save()
             messages.success(request, "Settings edited!")

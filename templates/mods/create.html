@@ -13,12 +13,14 @@
                     <input type="text" name="label" id="id_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Too Many Items" required>
+                    {{ form.label.errors }}
                 </div>
                 <div class="basis-1/4">
                     <label for="version_label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Version</label>
                     <input type="text" name="version_label" id="id_version_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="1.0" required>
+                    {{ form.version_label.errors }}
                 </div>
             </div>
 
@@ -29,6 +31,7 @@
                     <input type="text" name="short_description" id="id_short_description"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Offers you to see all items in Minecraft" required>
+                    {{ form.short_description.errors }}
                 </div>
 
                 <div class="basis-1/4">
@@ -38,6 +41,7 @@
                                   dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                            aria-describedby="file_input_help" name="logo" id="id_logo" type="file">
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 1024x1024px).</p>
+                    {{ form.logo.errors }}
                 </div>
             </div>
 
@@ -154,6 +158,7 @@
                                   placeholder="Write a description..." required></textarea>
                     </div>
                 </div>
+                {{ form.description.errors }}
             </div>
 
             <div class="mb-6">
@@ -164,14 +169,13 @@
                               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                        aria-describedby="file_input_help" name="version_file" id="id_version_file" type="file">
                 {#                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>#}
+                {{ form.version_file.errors }}
             </div>
 
             <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Submit
             </button>
-
-            <div id="example"></div>
 
         </form>
     </div>
