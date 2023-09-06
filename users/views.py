@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.context_processors import csrf
 from django.urls import reverse_lazy
 
+from mods.models import Mod
 from users.forms import RegisterForm
 
 
@@ -36,3 +38,16 @@ def register(request):
     token['form'] = form
 
     return render(request, 'registration/register.html', token)
+
+
+def profile(request, username):
+    target_user = get_object_or_404(User, username=username)
+
+    downloads = 0
+    for mod in Mod.objects.filter(user=target_user):
+        downloads += mod.get_downloads()
+
+    return render(request, 'users/profile.html', {
+        'target_user': target_user,
+        'downloads': downloads
+    })

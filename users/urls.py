@@ -10,4 +10,6 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     path('login/', MyLoginView.as_view(), name="login"),
     path('logout/', LogoutView.as_view(next_page='users:login'), name='logout'),
+
+    path('user/<str:username>/', views.profile, name='profile'),
 ]
