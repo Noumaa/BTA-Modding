@@ -17,7 +17,13 @@
                 </button>
                 <h3 class="font-bold my-4">
                     <form method="get" id="search-engine">
-                        {{ form.as_p }}
+                        {{ form.query }}
+                        <label>Categories</label>
+                        <ul>
+                            {% for choice_id, choice_label in form.fields.categories.choices %}
+                                <li><input type="checkbox" name="categories" id="category-{{ choice_id }}" value="{{choice_id}}"> {{choice_label}}</li>
+                            {% endfor %}
+                        </ul>
                     </form>
                 </h3>
             </div>
@@ -91,6 +97,11 @@
         const query = query_params.get('query');
 
         inputSource.value = query;
+
+        for (const category of query_params.getAll('categories')) {
+            let input = document.getElementById('category-'+category)
+            input.toggleAttribute('checked')
+        }
     </script>
 
 {% endblock %}
