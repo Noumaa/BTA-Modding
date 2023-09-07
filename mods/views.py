@@ -80,6 +80,10 @@ def mods_edit(request, username, mod_slug):
     user = get_object_or_404(User, username=username)
     mod = get_object_or_404(Mod, slug=mod_slug, user=user)
 
+    if mod.user is not request.user:
+        messages.error(request, 'Can\'t edit other resources!')
+        return redirect('mods:detail', username, mod_slug)
+
     form = ModForm(instance=mod)
     if request.method == "POST":
         form = ModForm(request.POST, request.FILES, instance=mod)
@@ -120,6 +124,10 @@ def version_detail(request, username, mod_slug, version_slug):
 def version_create(request, username, mod_slug):
     user = get_object_or_404(User, username=username)
     mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+
+    if mod.user is not request.user:
+        messages.error(request, 'Can\'t edit other resources!')
+        return redirect('mods:detail', username, mod_slug)
 
     form = VersionSubmitForm()
     if request.method == "POST":
