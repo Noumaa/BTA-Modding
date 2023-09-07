@@ -73,6 +73,11 @@
                             <p class="author"> by <a href="{% url 'users:profile' mod.user.username %}" class="underline hover:text-gray-500">{{ mod.user.username }}</a></p>
                         </div>
                         <p>{{ mod.short_description }}</p>
+                        <div class="flex flex-rows gap-3 mt-2">
+                            {% for category in mod.categories.all %}
+                                <p class="font-normal text-gray-400 inline-block pl-[0.15rem]">{{ category.label }}</p>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             {% empty %}
@@ -118,8 +123,14 @@
             input.toggleAttribute('checked')
         }
 
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('click', function (event) {
+                form.submit()
+            })
+        })
+
         function clear_filters() {
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
             for (const checkbox of checkboxes) {
                 checkbox.removeAttribute('checked')
             }
