@@ -172,34 +172,54 @@
 {% endblock %}
 
 <script>
-    // Fonction pour détecter si l'utilisateur utilise un smartphone
+    // Function to detect if the user is using a mobile device
     function detectMobileDevice() {
         return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
-    // Fonction pour afficher le bandeau de déconseillement
-    function afficherBandeauMobile() {
-        // Créez un élément div pour le bandeau
-        var bandeau = document.createElement('div');
-        bandeau.innerHTML = "It's not recommended to use a mobile device at the moment. Please use a desktop computer or tablet.";
+    // Function to display the mobile warning banner
+    function displayMobileBanner() {
+        // Check if the user has previously closed the banner
+        if (localStorage.getItem("mobileBannerClosed") !== "true") {
+            // Create a div element for the banner
+            var banner = document.createElement('div');
+            banner.style.position = "fixed";
+            banner.style.top = "0";
+            banner.style.left = "0";
+            banner.style.width = "100%";
+            banner.style.backgroundColor = "#FF0000";
+            banner.style.color = "#FFFFFF";
+            banner.style.padding = "10px";
+            banner.style.textAlign = "center";
 
-        // Ajoutez des styles CSS au bandeau
-        bandeau.style.position = "fixed";
-        bandeau.style.top = "0";
-        bandeau.style.left = "0";
-        bandeau.style.width = "100%";
-        bandeau.style.backgroundColor = "#FF0000";
-        bandeau.style.color = "#FFFFFF";
-        bandeau.style.padding = "10px";
-        bandeau.style.textAlign = "center";
+            // Create a close button
+            var closeButton = document.createElement('button');
+            closeButton.innerHTML = "Close";
+            closeButton.style.float = "right";
+            closeButton.style.cursor = "pointer";
 
-        // Ajoutez le bandeau à la page
-        document.body.appendChild(bandeau);
+            // Add an event listener to the close button to hide the banner and store the state in localStorage
+            closeButton.addEventListener('click', function() {
+                banner.style.display = "none";
+                localStorage.setItem("mobileBannerClosed", "true");
+            });
+
+            // Create a message for the banner
+            var message = document.createElement('div');
+            message.innerHTML = "It's not recommended to use a mobile device at the moment. Please use a desktop computer or tablet.";
+
+            // Add the close button and message to the banner
+            banner.appendChild(closeButton);
+            banner.appendChild(message);
+
+            // Add the banner to the page
+            document.body.appendChild(banner);
+        }
     }
 
-    // Vérifiez si l'utilisateur est sur un smartphone et affichez le bandeau si c'est le cas
+    // Check if the user is on a smartphone and display the banner if so
     if (detectMobileDevice()) {
-        afficherBandeauMobile();
+        displayMobileBanner();
     }
 
     $('#button').on('click', function () {
