@@ -17,6 +17,7 @@ def avatar_upload_path(instance, filename):
 class Category(models.Model):
     label = models.CharField(max_length=48)
     slug = models.SlugField(null=False, unique=True)
+    icon = models.CharField(max_length=1024)
 
     def save(self, *args, **kwargs):
         if not self.slug:

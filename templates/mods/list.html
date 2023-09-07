@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load misc %}
 {% load static %}
 
 {% block title %}
@@ -34,7 +35,11 @@
                                     <label
                                         class="font-normal text-gray-400 inline-block pl-[0.15rem] hover:cursor-pointer"
                                         for="category-{{ choice_id }}">
-                                        {{choice_label}}
+
+                                        <div class="flex flex-rows items-center gap-1">
+                                            {{ choice_label|get_category_icon }}
+                                            {{choice_label}}
+                                        </div>
                                     </label>
                                 </div>
                             {% endfor %}
@@ -75,7 +80,10 @@
                         <p>{{ mod.short_description }}</p>
                         <div class="flex flex-rows gap-3 mt-2">
                             {% for category in mod.categories.all %}
-                                <p class="font-normal text-gray-400 inline-block pl-[0.15rem]">{{ category.label }}</p>
+                                <div class="flex flex-rows items-center">
+                                    {{ category.icon|safe }}
+                                    <p class="font-normal text-gray-400 inline-block pl-[0.15rem]">{{ category.label }}</p>
+                                </div>
                             {% endfor %}
                         </div>
                     </div>
