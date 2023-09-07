@@ -172,6 +172,35 @@
 {% endblock %}
 
 <script>
+    // Fonction pour détecter si l'utilisateur utilise un smartphone
+    function detectMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // Fonction pour afficher le bandeau de déconseillement
+    function afficherBandeauMobile() {
+        // Créez un élément div pour le bandeau
+        var bandeau = document.createElement('div');
+        bandeau.innerHTML = "It's not recommended to use a mobile device at the moment. Please use a desktop computer or tablet.";
+
+        // Ajoutez des styles CSS au bandeau
+        bandeau.style.position = "fixed";
+        bandeau.style.top = "0";
+        bandeau.style.left = "0";
+        bandeau.style.width = "100%";
+        bandeau.style.backgroundColor = "#FF0000";
+        bandeau.style.color = "#FFFFFF";
+        bandeau.style.padding = "10px";
+        bandeau.style.textAlign = "center";
+
+        // Ajoutez le bandeau à la page
+        document.body.appendChild(bandeau);
+    }
+
+    // Vérifiez si l'utilisateur est sur un smartphone et affichez le bandeau si c'est le cas
+    if (detectMobileDevice()) {
+        afficherBandeauMobile();
+    }
 
     $('#button').on('click', function () {
         $('#dropdown-menu').toggleClass('hidden')
