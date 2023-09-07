@@ -7,7 +7,8 @@
 
 {% block content %}
 
-    <div class="my-6">
+    <div class="flex flex-row items-center my-3">
+        <img src="{{ target_user.avatar.url }}" alt="{{ target_user.username }} avatar" class="h-24 mx-5" />
         <h1 class="text-3xl font-bold">{{ target_user.username }}</h1>
     </div>
 
@@ -35,6 +36,7 @@
         </aside>
         <div class="basis-3/4">
             <div class="py-4 px-4 bg-card rounded-xl shadow-lg">
+                <p class="italic">need to put mod list here..</p>
             </div>
         </div>
     </div>

@@ -672,6 +672,11 @@ video {
   margin-bottom: 1.5rem;
 }
 
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
 .-mt-2 {
   margin-top: -0.5rem;
 }
@@ -722,6 +727,14 @@ video {
 
 .mt-6 {
   margin-top: 1.5rem;
+}
+
+.me-16 {
+  margin-inline-end: 4rem;
+}
+
+.ms-8 {
+  margin-inline-start: 2rem;
 }
 
 .block {
@@ -786,6 +799,14 @@ video {
 
 .h-px {
   height: 1px;
+}
+
+.h-32 {
+  height: 8rem;
+}
+
+.h-24 {
+  height: 6rem;
 }
 
 .w-10 {
@@ -1244,6 +1265,10 @@ video {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+.italic {
+  font-style: italic;
 }
 
 .text-black {
