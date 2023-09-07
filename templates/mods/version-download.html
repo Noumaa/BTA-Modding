@@ -1,5 +1,9 @@
 {% extends 'mods/_mod_layout.html' %}
 
+{% block title %}
+    {{ version.label }} - {{ mod.label }}
+{% endblock %}
+
 {% block main %}
 
     <div class="p-5 bg-card rounded-xl shadow-lg">
