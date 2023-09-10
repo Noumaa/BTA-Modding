@@ -91,12 +91,11 @@
                                                   d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3"></path>
                                         </svg>
                                     </a>
-                                    {#                                    <img class="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-1.jpg" alt="Neil image">#}
                                 </div>
                                 <a class=" hover:underline flex-1 min-w-0"
                                    href="{% url 'mods:version-detail' mod.user.username mod.slug version.slug %}">
                                     <div class="">
-                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                        <p class="text-sm font-medium truncate text-white">
                                             {{ version.label }}
                                         </p>
                                         {#                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">#}
