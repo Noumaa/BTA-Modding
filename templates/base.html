@@ -197,6 +197,7 @@
             closeButton.innerHTML = "Close";
             closeButton.style.float = "right";
             closeButton.style.cursor = "pointer";
+            closeButton.classList.add("px-2", "rounded-md", "bg-gradient-to-r", "from-purple-600", "to-blue-600")
 
             // Add an event listener to the close button to hide the banner and store the state in localStorage
             closeButton.addEventListener('click', function() {
