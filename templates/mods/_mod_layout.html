@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load misc %}
 {% load time %}
 {% load static %}
 
@@ -39,6 +40,15 @@
 
                 <p class="pt-2">{{ mod.short_description }}</p>
 
+                <div class="flex flex-rows gap-3 mt-2">
+                    {% for category in mod.categories.all %}
+                        <div class="flex flex-row gap-1 items-center align-center">
+                            {{ category.label|get_category_icon }}
+                            <p>{{ category.label }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+
                 <hr class="h-px my-3 bg-separator border-0">
 
                 <div class="flex flex-row items-center">
@@ -61,6 +71,8 @@
                     </svg>
                     <p>Updated {{ mod.versions.first.publish|days_until }} ago</p>
                 </div>
+
+                <hr class="h-px my-3 bg-separator border-0">
 
             </div>
 
@@ -96,6 +108,14 @@
                         </li>
                     {% endfor %}
                 </ul>
+
+                <hr class="h-px my-3 bg-separator border-0">
+
+                <h2 class="text-lg font-bold pt-2">Project members</h2>
+                <a href="{% url 'users:profile' mod.user.username %}" class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-700">
+                    <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="{{ mod.user.avatar.url }}" alt="{{ mod.user.username }} avatar">
+                    <p>{{ mod.user.username }}</p>
+                </a>
             </div>
         </aside>
         <div class="basis-3/4">
