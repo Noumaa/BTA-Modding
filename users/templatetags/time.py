@@ -10,9 +10,6 @@ def days_until(date):
     date = date
     now = datetime.now(timezone.utc)
 
-    print(date)
-    print(now)
-
     difference = now - date
 
     seconds = difference.total_seconds()

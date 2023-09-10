@@ -27,11 +27,6 @@ class Category(models.Model):
 
 # Create your models here.
 class Mod(models.Model):
-    class Categories(models.TextChoices):
-        ADVENTURE = 'adventure', _('Adventure')
-        CURSED = 'cursed', _('Cursed')
-        DECORATION = 'decoration', _('Decoration')
-
     label = models.CharField(max_length=48)
     logo = models.ImageField(upload_to=avatar_upload_path, default="mod_default.png")
     short_description = models.CharField(max_length=128)
@@ -57,6 +52,12 @@ class Mod(models.Model):
         for version in self.versions.all():
             count += version.downloads
         return count
+
+    def get_categories_pk(self):
+        categories_pk = []
+        for category in self.categories.all():
+            categories_pk += [category.pk]
+        return categories_pk
 
 
 class Version(models.Model):
