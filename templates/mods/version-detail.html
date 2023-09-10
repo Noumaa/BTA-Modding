@@ -38,11 +38,17 @@
             <div class="p-5 bg-card rounded-xl shadow-lg">
                 <h3 class="text-lg font-bold">Metadata</h3>
 
+                <h4 class="text-md mt-3 font-bold">Downloads</h4>
+                <p>{{ version.downloads }}</p>
+
                 <h4 class="text-md mt-3 font-bold">Publication date</h4>
                 <p>{{ version.publish }}</p>
 
                 <h4 class="text-md mt-3 font-bold">Publisher</h4>
-                <p>{{ mod.user.username }}</p>
+                <a href="{% url 'users:profile' mod.user.username %}" class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-700">
+                    <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="{{ mod.user.avatar.url }}" alt="{{ mod.user.username }} avatar">
+                    <p>{{ mod.user.username }}</p>
+                </a>
             </div>
         </div>
     </div>
