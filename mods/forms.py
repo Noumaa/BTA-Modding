@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from mods.models import Mod, Version, Category, ExternalLinks
+from mods.models import Mod, Version, Category, ExternalLinks, ReleaseChannel
 
 
 def get_choices_for_category():
@@ -22,6 +22,7 @@ class ModForm(ModelForm):
 class ModSubmitForm(ModForm):
     version_label = forms.CharField()
     version_file = forms.FileField()
+    version_release_channel = forms.ModelChoiceField(queryset=ReleaseChannel.objects.all())
 
 
 class ModFilterForm(forms.Form):
@@ -32,7 +33,7 @@ class ModFilterForm(forms.Form):
 class VersionSubmitForm(ModelForm):
     class Meta:
         model = Version
-        exclude = ['slug', 'mod', 'publish']
+        exclude = ['slug', 'mod', 'publish', 'downloads']
 
 
 class ExternalLinksForm(ModelForm):

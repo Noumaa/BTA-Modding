@@ -1,4 +1,4 @@
-from mods.models import Category
+from mods.models import Category, ReleaseChannel
 
 
 def create_default_categories(sender, **kwargs):
@@ -30,3 +30,19 @@ def create_default_categories(sender, **kwargs):
             category.save()
         else:
             Category.objects.get_or_create(label=name, icon=icon)
+
+
+def create_default_release_channels(sender, **kwargs):
+    default_release_channels = [
+        ('Release', "#21c45d"),
+        ('Beta', "#f9ab02"),
+        ('Alpha', "#fc2828"),
+    ]
+
+    for label, color in default_release_channels:
+        if ReleaseChannel.objects.filter(label=label).exists() and ReleaseChannel.objects.get(label=label).color is not color:
+            release = ReleaseChannel.objects.get(label=label)
+            release.color = color
+            release.save()
+        else:
+            ReleaseChannel.objects.get_or_create(label=label, color=color)

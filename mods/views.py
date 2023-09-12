@@ -1,12 +1,11 @@
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from users.models import User
-from django.db.models import Q, Max, URLField
+from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
 
-from mods.forms import ModSubmitForm, ModForm, VersionSubmitForm, ModFilterForm, ExternalLinksForm
-from mods.models import Mod, Version, ExternalLinks
+from mods.forms import ModForm, VersionSubmitForm, ModFilterForm, ExternalLinksForm, ModSubmitForm
+from mods.models import Mod, Version
+from users.models import User
 
 
 # Create your views here.
@@ -36,6 +35,9 @@ def mods_list(request):
 
 @login_required
 def mods_create(request):
+    mod_form = ModSubmitForm()
+    links_form = ExternalLinksForm()
+
     if request.method == "POST":
         mod_form = ModSubmitForm(request.POST, request.FILES)
         links_form = ExternalLinksForm(request.POST)
@@ -45,24 +47,21 @@ def mods_create(request):
             mod.user = request.user
             mod.save()
 
+            version = Version(
+                mod=mod,
+                label=mod_form.cleaned_data['version_label'],
+                file=mod_form.cleaned_data['version_file'],
+                release_channel=mod_form.cleaned_data['version_release_channel'],
+            )
+            version.save()
+
             links = links_form.save(commit=False)
             links.mod = mod
             links.save()
 
-            version = Version(
-                label=mod_form.cleaned_data['version_label'],
-                file=mod_form.cleaned_data['version_file'],
-                mod=mod
-            )
-            version.save()
-
             mod_form.save_m2m()
 
             return redirect('mods:detail', username=request.user.username, mod_slug=mod.slug)
-
-    else:
-        mod_form = ModSubmitForm()
-        links_form = ExternalLinksForm()
 
     return render(request, 'mods/create.html', {
         'form': mod_form,

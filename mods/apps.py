@@ -7,6 +7,7 @@ class ModsConfig(AppConfig):
     name = 'mods'
 
     def ready(self):
-        from mods.signals import create_default_categories
-        post_migrate.connect(create_default_categories, sender=self)
+        from mods import signals
+        post_migrate.connect(signals.create_default_categories, sender=self)
+        post_migrate.connect(signals.create_default_release_channels, sender=self)
         return super().ready()

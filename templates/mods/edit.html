@@ -8,7 +8,7 @@
 
             <div class="mb-6">
                 <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Mod
-                    name</label>
+                    name<span class='text-red-500'>*</span></label>
                 <input type="text" name="label" id="id_label"
                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                        placeholder="Too Many Items" value="{{ form.label.value }}" required>
@@ -17,7 +17,7 @@
             <div class="flex flex-row gap-6">
                 <div class="basis-2/3">
                     <label for="short_description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Short
-                        description</label>
+                        description<span class='text-red-500'>*</span></label>
                     <input type="text" name="short_description" id="id_short_description"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Offers you to see all items in Minecraft" value="{{ form.short_description.value }}" required>
@@ -35,7 +35,7 @@
 
             <div class="mb-6 flex">
                 <div class="basis-1/3">
-                    <label class="block mb-2 text-sm font-medium text-white" for="version_file">Categories</label>
+                    <label class="block mb-2 text-sm font-medium text-white" for="version_file">Categories<span class='text-red-500'>*</span></label>
                     {% for choice_id, choice_label in form.fields.categories.choices %}
                         <div class="mt-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
                             <input
@@ -218,7 +218,7 @@
                         <label for="description" class="sr-only">Publish post</label>
                         <textarea name="description" id="id_description" rows="8"
                                   class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                                  placeholder="Write a description..." required>{{ form.description.value }}</textarea>
+                                  placeholder="Write a description... (Required)" required>{{ form.description.value }}</textarea>
                     </div>
                 </div>
             </div>
@@ -229,7 +229,5 @@
             </button>
         </form>
     </div>
-
-    {{ form.media }}
 
 {% endblock %}

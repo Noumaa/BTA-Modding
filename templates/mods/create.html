@@ -24,7 +24,7 @@
                     <input type="text" name="version_label" id="id_version_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="1.0" required>
-                    {{ form.version_label.errors }}
+                    {{ form.label.errors }}
                 </div>
             </div>
 
@@ -46,6 +46,28 @@
                            aria-describedby="file_input_help" name="logo" id="id_logo" type="file">
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 1024x1024px).</p>
                     {{ form.logo.errors }}
+                </div>
+            </div>
+
+            <div class="mb-6 flex flex-row gap-6">
+                <div class="basis-3/4">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="id_version_file">Upload
+                        file<span class='text-red-500'>*</span></label>
+                    <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
+                                  bg-gray-50 dark:text-gray-400 focus:outline-none
+                                  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                           aria-describedby="file_input_help" name="version_file" id="id_version_file" type="file">
+                    {#                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>#}
+                    {{ form.version_file.errors }}
+                </div>
+
+                <div class="basis-1/4">
+                    <label for="id_version_release_channel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Release channel<span class="text-red-500">*</span></label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="version_release_channel" id="id_version_release_channel">
+                        <option value="1" selected="">Release</option>
+                        <option value="2">Beta</option>
+                        <option value="3">Alpha</option>
+                    </select>
                 </div>
             </div>
 
@@ -238,17 +260,6 @@
                     </div>
                 </div>
                 {{ form.description.errors }}
-            </div>
-
-            <div class="mb-6">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="version_file">Upload
-                    file<span class='text-red-500'>*</span></label>
-                <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
-                              bg-gray-50 dark:text-gray-400 focus:outline-none
-                              dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                       aria-describedby="file_input_help" name="version_file" id="id_version_file" type="file">
-                {#                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>#}
-                {{ form.version_file.errors }}
             </div>
 
             <button type="submit"

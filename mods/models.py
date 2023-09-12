@@ -60,14 +60,30 @@ class Mod(models.Model):
         return categories_pk
 
 
+class ReleaseChannel(models.Model):
+    label = models.CharField(max_length=64)
+    color = models.CharField(max_length=7)
+
+    @classmethod
+    def get_default(cls):
+        release_channel, created = cls.objects.get_or_create(
+            label='Release',
+        )
+        return release_channel.pk
+
+    def __str__(self) -> str:
+        return self.label
+
+
 class Version(models.Model):
     mod = models.ForeignKey(Mod, related_name='versions', on_delete=models.CASCADE)
     label = models.CharField(max_length=48)
     slug = models.SlugField(null=False)
-    changelog = MarkdownxField(null=True)
+    changelog = MarkdownxField(null=True, blank=True)
     file = models.FileField(upload_to=version_upload_path)
     publish = models.DateTimeField(auto_now_add=True)
     downloads = models.IntegerField(blank=True, default=0)
+    release_channel = models.ForeignKey(ReleaseChannel, related_name='versions', default=ReleaseChannel.get_default, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["-publish"]
@@ -75,6 +91,8 @@ class Version(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.label)
+        if not self.release_channel:
+            self.release_channel = ReleaseChannel.objects.get(label='Release')
         return super().save(*args, **kwargs)
 
 

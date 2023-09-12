@@ -5,15 +5,26 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="mb-6">
-                <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Version</label>
-                <input type="text" name="label" id="id_label"
-                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                       placeholder="Previous: {{ versions.first.label }}" required>
+            <div class="mb-6 flex flex-row gap-6">
+                <div class="basis-3/4">
+                    <label for="label" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Version<span class='text-red-500'>*</span></label>
+                    <input type="text" name="label" id="id_label"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Previous: {{ versions.first.label }}" required>
+                </div>
+
+                <div class="basis-1/4">
+                    <label for="release_channel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Release channel<span class='text-red-500'>*</span></label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="release_channel" id="id_release_channel">
+                        <option value="1" selected="">Release</option>
+                        <option value="2">Beta</option>
+                        <option value="3">Alpha</option>
+                    </select>
+                </div>
             </div>
 
             <div class="mb-6">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file">Upload file</label>
+                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file">Upload file<span class='text-red-500'>*</span></label>
                 <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
                               bg-gray-50 dark:text-gray-400 focus:outline-none
                               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
@@ -131,7 +142,7 @@
                         <label for="changelog" class="sr-only">Publish post</label>
                         <textarea name="changelog" id="id_changelog" rows="8"
                                   class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                                  placeholder="Write a changelog..." required></textarea>
+                                  placeholder="Write a changelog... (Required)" required></textarea>
                     </div>
                 </div>
             </div>
