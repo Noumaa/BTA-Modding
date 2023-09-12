@@ -123,7 +123,7 @@ class Version(models.Model):
     changelog = MarkdownxField(null=True, blank=True)
     file = models.FileField(upload_to=version_upload_path)
 
-    game_version = models.ForeignKey(GameVersion, related_name='versions', default=GameVersion.get_latest, on_delete=models.CASCADE)
+    game_version = models.ForeignKey(GameVersion, related_name='versions', on_delete=models.CASCADE)
     loaders = models.ManyToManyField(Loader, related_name='versions')
     release_channel = models.ForeignKey(ReleaseChannel, related_name='versions', default=ReleaseChannel.get_default, on_delete=models.CASCADE)
 
