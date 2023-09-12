@@ -5,11 +5,9 @@ from mods.models import Mod, Version
 
 
 class ModSitemap(Sitemap):
-    changefreq = "weekly"
-    priority = 0.5
-
     def items(self):
         return Mod.objects.all()
+
 
     def lastmod(self, obj):
         latest_version = Version.objects.filter(mod=obj).first()
