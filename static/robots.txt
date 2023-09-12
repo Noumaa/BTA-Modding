@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: htthttps://bta-modding.nouma-vallee.fr/sitemap.xml
