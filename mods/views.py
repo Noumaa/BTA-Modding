@@ -2,11 +2,11 @@ from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from users.models import User
-from django.db.models import Q, Max
+from django.db.models import Q, Max, URLField
 from django.shortcuts import render, get_object_or_404, redirect
 
-from mods.forms import ModSubmitForm, ModForm, VersionSubmitForm, ModFilterForm
-from mods.models import Mod, Version
+from mods.forms import ModSubmitForm, ModForm, VersionSubmitForm, ModFilterForm, ExternalLinksForm
+from mods.models import Mod, Version, ExternalLinks
 
 
 # Create your views here.
@@ -37,27 +37,36 @@ def mods_list(request):
 @login_required
 def mods_create(request):
     if request.method == "POST":
-        form = ModSubmitForm(request.POST, request.FILES)
-        if form.is_valid():
-            mod = form.save(commit=False)
-            version = Version(
-                label=form.cleaned_data['version_label'],
-                file=form.cleaned_data['version_file'],
-                mod=mod
-            )
+        mod_form = ModSubmitForm(request.POST, request.FILES)
+        links_form = ExternalLinksForm(request.POST)
+
+        if mod_form.is_valid() and links_form.is_valid():
+            mod = mod_form.save(commit=False)
             mod.user = request.user
             mod.save()
+
+            links = links_form.save(commit=False)
+            links.mod = mod
+            links.save()
+
+            version = Version(
+                label=mod_form.cleaned_data['version_label'],
+                file=mod_form.cleaned_data['version_file'],
+                mod=mod
+            )
             version.save()
 
-            form.save_m2m()
+            mod_form.save_m2m()
 
             return redirect('mods:detail', username=request.user.username, mod_slug=mod.slug)
 
     else:
-        form = ModSubmitForm()
+        mod_form = ModSubmitForm()
+        links_form = ExternalLinksForm()
 
     return render(request, 'mods/create.html', {
-        'form': form,
+        'form': mod_form,
+        'links_form': links_form,
     })
 
 
@@ -85,16 +94,28 @@ def mods_edit(request, username, mod_slug):
         return redirect('mods:detail', username, mod_slug)
 
     form = ModForm(instance=mod)
+
+    links_form = ExternalLinksForm()
+    if mod.links.exists():
+        links_form = ExternalLinksForm(instance=mod.links.first())
+
     if request.method == "POST":
         form = ModForm(request.POST, request.FILES, instance=mod)
-        if form.is_valid():
+        links_form = ExternalLinksForm(request.POST, instance=mod.links.first())
+        if form.is_valid() and links_form.is_valid():
             form.save()
+
+            links = links_form.save(commit=False)
+            links.mod = mod
+            links.save()
+
             messages.success(request, "Settings edited!")
             return redirect('mods:detail', username=username, mod_slug=mod_slug)
 
     return render(request, 'mods/edit.html', {
         'mod': mod,
-        'form': form
+        'form': form,
+        'links_form': links_form
     })
 
 

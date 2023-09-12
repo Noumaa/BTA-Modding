@@ -45,7 +45,7 @@
                 <p>{{ version.publish }}</p>
 
                 <h4 class="text-md mt-3 font-bold">Publisher</h4>
-                <a href="{% url 'users:profile' mod.user.username %}" class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-700">
+                <a href="{% url 'users:profile' mod.user.username %}" class="flex items-center gap-2 p-2 hover:bg-backgrounddark rounded-xl mt-2">
                     <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="{{ mod.user.avatar.url }}" alt="{{ mod.user.username }} avatar">
                     <p>{{ mod.user.username }}</p>
                 </a>

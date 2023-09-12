@@ -80,8 +80,20 @@ class Version(models.Model):
 
 class ExternalLinks(models.Model):
     mod = models.ForeignKey(Mod, related_name='links', on_delete=models.CASCADE)
-    issue_tracker = models.CharField(max_length=255)
-    source_code = models.CharField(max_length=255)
-    wiki_page = models.CharField(max_length=255)
-    discord_invite = models.CharField(max_length=255)
-    donation_links = models.CharField(max_length=255)
+    issue_tracker = models.URLField(default='', blank=True)
+    source_code = models.URLField(default='', blank=True)
+    wiki_page = models.URLField(default='', blank=True)
+    discord_invite = models.URLField(default='', blank=True)
+    donation_links = models.URLField(default='', blank=True)
+
+    def get_all_urls(self):
+        urls = []
+
+        fields = [field for field in self._meta.get_fields() if isinstance(field, models.URLField)]
+
+        for field in fields:
+            url = getattr(self, field.name)
+            if url:
+                urls.append([field.name, url])
+
+        return urls

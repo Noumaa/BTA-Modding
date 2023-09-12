@@ -40,7 +40,7 @@
 
                 <p class="pt-2">{{ mod.short_description }}</p>
 
-                <div class="flex flex-rows gap-3 mt-2">
+                <div class="flex flex-rows flex-wrap gap-x-3 mt-2">
                     {% for category in mod.categories.all %}
                         <div class="flex flex-row gap-1 items-center align-center">
                             {{ category.label|get_category_icon }}
@@ -77,10 +77,36 @@
             </div>
 
             <div class="mt-4 p-5 bg-card rounded-xl shadow-lg">
+                {% if mod.links.exists and mod.links.first.get_all_urls|length > 0 %}
+                    <h2 class="text-lg font-bold pt-2">External links</h2>
+                    <p class="flex flex-row flex-wrap gap-x-2 mt-3 mb-2 sm:mb-4">
+                        {% for name, url in mod.links.first.get_all_urls %}
+                            <a class="flex flex-row items-center gap-2 hover:text-white" target="_blank" rel="noreferrer" href="{{ url }}">
+                                • {{ name|get_link_icon }}
+                                {% if name == 'issue_tracker' %}
+                                    <span class="underline">Issues</span>
+                                {% elif name == 'source_code' %}
+                                    <span class="underline">Source</span>
+                                {% elif name == 'wiki_page' %}
+                                    <span class="underline">Wiki</span>
+                                {% elif name == 'discord_invite' %}
+                                    <span class="underline">Discord</span>
+                                {% elif name == 'donation_links' %}
+                                    <span class="underline">Donate</span>
+                                {% else %}
+                                    <span class="underline">{{ name }}</span>
+                                {% endif %}
+                            </a>
+                        {% endfor %}
+                    </p>
+
+                    <hr class="h-px my-3 bg-separator border-0">
+                {% endif %}
+
                 <h2 class="text-lg font-bold pt-2">Featured versions</h2>
                 <ul class="mt-3 max-w-md">
                     {% for version in mod.versions.all %}
-                        <li class="mb-2 sm:mb-4">
+                        <li class="p-2 mb-2 sm:mb-4 hover:bg-backgrounddark rounded-xl">
                             <div class="flex items-center space-x-4">
                                 <div class="flex flex-row">
                                     <a href="{% url 'mods:version-download' mod.user.username mod.slug version.slug %}"
@@ -94,14 +120,12 @@
                                 </div>
                                 <a class=" hover:underline flex-1 min-w-0"
                                    href="{% url 'mods:version-detail' mod.user.username mod.slug version.slug %}">
-                                    <div class="">
-                                        <p class="text-sm font-medium truncate text-white">
+                                        <p class="text-sm font-medium truncate text-white font-bold">
                                             {{ version.label }}
                                         </p>
                                         {#                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">#}
                                         {#                                   email@flowbite.com#}
                                         {#                                </p>#}
-                                    </div>
                                 </a>
                             </div>
                         </li>
@@ -111,7 +135,7 @@
                 <hr class="h-px my-3 bg-separator border-0">
 
                 <h2 class="text-lg font-bold pt-2">Project members</h2>
-                <a href="{% url 'users:profile' mod.user.username %}" class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-700">
+                <a href="{% url 'users:profile' mod.user.username %}" class="flex items-center gap-2 p-1 py-2 hover:bg-backgrounddark rounded-xl mt-2">
                     <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="{{ mod.user.avatar.url }}" alt="{{ mod.user.username }} avatar">
                     <p>{{ mod.user.username }}</p>
                 </a>

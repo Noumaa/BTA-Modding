@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from mods.models import Mod, Version, Category
+from mods.models import Mod, Version, Category, ExternalLinks
 
 
 def get_choices_for_category():
@@ -13,7 +13,6 @@ def get_choices_for_category():
 
 class ModForm(ModelForm):
     categories = forms.MultipleChoiceField(required=True, choices=get_choices_for_category, widget=forms.CheckboxSelectMultiple)
-    
 
     class Meta:
         model = Mod
@@ -34,3 +33,9 @@ class VersionSubmitForm(ModelForm):
     class Meta:
         model = Version
         exclude = ['slug', 'mod', 'publish']
+
+
+class ExternalLinksForm(ModelForm):
+    class Meta:
+        model = ExternalLinks
+        exclude = ['mod']

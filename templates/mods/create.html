@@ -13,15 +13,14 @@
 
             <div class="flex flex-row gap-6 mb-6">
                 <div class="basis-3/4">
-                    <label for="label" class="block mb-2 text-sm font-medium text-white">Mod
-                        name</label>
+                    <label for="label" class="block mb-2 text-sm font-medium text-white">Mod name<span class="text-red-500">*</span></label>
                     <input type="text" name="label" id="id_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Too Many Items" required>
                     {{ form.label.errors }}
                 </div>
                 <div class="basis-1/4">
-                    <label for="version_label" class="block mb-2 text-sm font-medium text-white">Version</label>
+                    <label for="version_label" class="block mb-2 text-sm font-medium text-white">Version<span class="text-red-500">*</span></label>
                     <input type="text" name="version_label" id="id_version_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="1.0" required>
@@ -32,7 +31,7 @@
             <div class="flex flex-row gap-6 mb-3">
                 <div class="basis-3/4">
                     <label for="short_description" class="block mb-2 text-sm font-medium text-white">Short
-                        description</label>
+                        description<span class="text-red-500">*</span></label>
                     <input type="text" name="short_description" id="id_short_description"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Offers you to see all items in Minecraft" required>
@@ -50,29 +49,79 @@
                 </div>
             </div>
 
-            <div class="mb-6">
-                <label class="block mb-2 text-sm font-medium text-white" for="version_file">Categories</label>
-                {% for choice_id, choice_label in form.fields.categories.choices %}
-                    <div class="mt-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
-                        <input
-                            class="relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
-                            type="checkbox"
-                            value="{{choice_id}}"
-                            id="category-{{ choice_id }}"
-                            name="categories"/>
-                        <label
-                            class="font-normal text-gray-400 inline-block pl-[0.15rem] hover:cursor-pointer"
-                            for="category-{{ choice_id }}">
+            <div class="mb-6 flex">
+                <div class="basis-1/3">
+                    <label class="block mb-2 text-sm font-medium text-white" for="version_file">Categories<span class="text-red-500">*</span></label>
+                    {% for choice_id, choice_label in form.fields.categories.choices %}
+                        <div class="mt-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
+                            <input
+                                    class="relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none before:pointer-events-none before:absolute before:h-[0.875rem] before:w-[0.875rem] before:scale-0 before:rounded-full before:bg-transparent before:opacity-0 before:shadow-[0px_0px_0px_13px_transparent] before:content-[''] checked:border-primary checked:bg-primary checked:before:opacity-[0.16] checked:after:absolute checked:after:-mt-px checked:after:ml-[0.25rem] checked:after:block checked:after:h-[0.8125rem] checked:after:w-[0.375rem] checked:after:rotate-45 checked:after:border-[0.125rem] checked:after:border-l-0 checked:after:border-t-0 checked:after:border-solid checked:after:border-white checked:after:bg-transparent checked:after:content-[''] hover:cursor-pointer hover:before:opacity-[0.04] hover:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:shadow-none focus:transition-[border-color_0.2s] focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[0px_0px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-[0.875rem] focus:after:w-[0.875rem] focus:after:rounded-[0.125rem] focus:after:content-[''] checked:focus:before:scale-100 checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] checked:focus:after:-mt-px checked:focus:after:ml-[0.25rem] checked:focus:after:h-[0.8125rem] checked:focus:after:w-[0.375rem] checked:focus:after:rotate-45 checked:focus:after:rounded-none checked:focus:after:border-[0.125rem] checked:focus:after:border-l-0 checked:focus:after:border-t-0 checked:focus:after:border-solid checked:focus:after:border-white checked:focus:after:bg-transparent dark:border-neutral-600 dark:checked:border-primary dark:checked:bg-primary dark:focus:before:shadow-[0px_0px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[0px_0px_0px_13px_#3b71ca]"
+                                    type="checkbox"
+                                    value="{{choice_id}}"
+                                    id="category-{{ choice_id }}"
+                                    name="categories"
+                                    {% if choice_id in mod.get_categories_pk %}
+                                    checked
+                                    {% endif %}
+                            />
+                            <label
+                                    class="font-normal text-gray-400 inline-block pl-[0.15rem] hover:cursor-pointer"
+                                    for="category-{{ choice_id }}">
 
-                            <div class="flex flex-rows items-center gap-1">
-                                {{ choice_label|get_category_icon }}
-                                {{choice_label}}
-                            </div>
+                                <div class="flex flex-rows items-center gap-1">
+                                    {{ choice_label|get_category_icon }}
+                                    {{ choice_label }}
+                                </div>
+                            </label>
+                        </div>
+                    {% endfor %}
+                    {{ form.categories.errors }}
+                </div>
+
+                <div class="basis-2/3">
+                    <p class="block mb-2 text-sm font-medium text-white">External links</p>
+
+                    <div class="flex flex-row align-baseline items-baseline gap-2">
+                        <label class="block mb-2 text-sm font-normal text-gray-400 flex flex-row align-venter items-center gap-1" for="issue_tracker">
+                            {{ "issue_tracker"|get_link_icon }}
+                            Issues
                         </label>
+                        <input type="url" name="issue_tracker" maxlength="200" id="id_issue_tracker" value="{{ links_form.issue_tracker.value }}">
                     </div>
-                {% endfor %}
-{#                {{ form.categories }}#}
-                {{ form.categories.errors }}
+
+                    <div class="flex flex-row align-baseline items-baseline gap-2">
+                        <label class="block mb-2 text-sm font-normal text-gray-400 flex flex-row align-venter items-center gap-1" for="source_code">
+                            {{ "source_code"|get_link_icon }}
+                            Source
+                        </label>
+                        <input type="url" name="source_code" maxlength="200" id="id_source_code" value="{{ links_form.source_code.value }}">
+                    </div>
+
+                    <div class="flex flex-row align-baseline items-baseline gap-2">
+                        <label class="block mb-2 text-sm font-normal text-gray-400 flex flex-row align-venter items-center gap-1" for="wiki_page">
+                            {{ "wiki_page"|get_link_icon }}
+                            Wiki
+                        </label>
+                        <input type="url" name="wiki_page" maxlength="200" id="id_wiki_page" value="{{ links_form.wiki_page.value }}">
+                    </div>
+
+                    <div class="flex flex-row align-baseline items-baseline gap-2">
+                        <label class="block mb-2 text-sm font-normal text-gray-400 flex flex-row align-venter items-center gap-1" for="discord_invite">
+                            {{ "discord_invite"|get_link_icon }}
+                            Discord
+                        </label>
+                        <input type="url" name="discord_invite" maxlength="200" id="id_discord_invite" value="{{ links_form.discord_invite.value }}">
+                    </div>
+
+                    <div class="flex flex-row align-baseline items-baseline gap-2">
+                        <label class="block mb-2 text-sm font-normal text-gray-400 flex flex-row align-venter items-center gap-1" for="donation_links">
+                            {{ "donation_links"|get_link_icon }}
+                            Donate
+                        </label>
+                        <input type="url" name="donation_links" maxlength="200" id="id_donation_links" value="{{ links_form.donation_links.value }}">
+                    </div>
+                </div>
+
             </div>
 
             <div class="mb-6">
@@ -185,7 +234,7 @@
                         <label for="description" class="sr-only">Publish post</label>
                         <textarea name="description" id="id_description" rows="8"
                                   class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"
-                                  placeholder="Write a description..." required></textarea>
+                                  placeholder="Write a description... (Required)" required></textarea>
                     </div>
                 </div>
                 {{ form.description.errors }}
@@ -193,7 +242,7 @@
 
             <div class="mb-6">
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="version_file">Upload
-                    file</label>
+                    file<span class='text-red-500'>*</span></label>
                 <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
                               bg-gray-50 dark:text-gray-400 focus:outline-none
                               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
