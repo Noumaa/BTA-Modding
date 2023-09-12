@@ -42,6 +42,9 @@ class Mod(models.Model):
     class Meta:
         ordering = ["-publish"]
 
+    def get_absolute_url(self):
+        return f"/{self.user.username}/{self.slug}/"
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.label)

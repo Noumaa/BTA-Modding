@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'mods.apps.ModsConfig',
