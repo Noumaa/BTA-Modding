@@ -67,7 +67,7 @@ class Version(models.Model):
     changelog = MarkdownxField(null=True)
     file = models.FileField(upload_to=version_upload_path)
     publish = models.DateTimeField(auto_now_add=True)
-    downloads = models.IntegerField(default=0)
+    downloads = models.IntegerField(blank=True, default=0)
 
     class Meta:
         ordering = ["-publish"]
