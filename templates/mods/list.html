@@ -67,8 +67,6 @@
 
             {% for mod in mods %}
                 <div class="my-3 py-4 px-4 bg-card rounded-xl shadow-lg flex ">
-
-{#                h-28  h-28 w-full basis-28#}
                     <a class="basis-28" href="{% url 'mods:detail' mod.user.username mod.slug %}">
                         <img class="bg-background rounded-xl w-28" src="{{ mod.logo.url }}" alt="{{ mod.label }} logo" />
                     </a>
@@ -80,6 +78,7 @@
                             <p class="author"> by <a href="{% url 'users:profile' mod.user.username %}" class="underline hover:text-gray-500">{{ mod.user.username }}</a></p>
                         </div>
                         <p class="max-w-sm lg:max-w-3xl">{{ mod.short_description }}</p>
+
                         <div class="flex flex-rows flex-wrap gap-3 mt-2">
                             {% for category in mod.categories.all %}
                                 <div class="flex flex-rows items-center">

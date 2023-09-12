@@ -76,3 +76,12 @@ class Version(models.Model):
         if not self.slug:
             self.slug = slugify(self.label)
         return super().save(*args, **kwargs)
+
+
+class ExternalLinks(models.Model):
+    mod = models.ForeignKey(Mod, related_name='links', on_delete=models.CASCADE)
+    issue_tracker = models.CharField(max_length=255)
+    source_code = models.CharField(max_length=255)
+    wiki_page = models.CharField(max_length=255)
+    discord_invite = models.CharField(max_length=255)
+    donation_links = models.CharField(max_length=255)

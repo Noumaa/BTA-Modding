@@ -13,6 +13,7 @@ def get_choices_for_category():
 
 class ModForm(ModelForm):
     categories = forms.MultipleChoiceField(required=True, choices=get_choices_for_category, widget=forms.CheckboxSelectMultiple)
+    
 
     class Meta:
         model = Mod
