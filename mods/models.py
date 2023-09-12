@@ -60,42 +60,6 @@ class Mod(models.Model):
         return categories_pk
 
 
-class ReleaseChannel(models.Model):
-    label = models.CharField(max_length=64)
-    color = models.CharField(max_length=7)
-
-    @classmethod
-    def get_default(cls):
-        release_channel, created = cls.objects.get_or_create(
-            label='Release',
-        )
-        return release_channel.pk
-
-    def __str__(self) -> str:
-        return self.label
-
-
-class Version(models.Model):
-    mod = models.ForeignKey(Mod, related_name='versions', on_delete=models.CASCADE)
-    label = models.CharField(max_length=48)
-    slug = models.SlugField(null=False)
-    changelog = MarkdownxField(null=True, blank=True)
-    file = models.FileField(upload_to=version_upload_path)
-    publish = models.DateTimeField(auto_now_add=True)
-    downloads = models.IntegerField(blank=True, default=0)
-    release_channel = models.ForeignKey(ReleaseChannel, related_name='versions', default=ReleaseChannel.get_default, on_delete=models.CASCADE)
-
-    class Meta:
-        ordering = ["-publish"]
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.label)
-        if not self.release_channel:
-            self.release_channel = ReleaseChannel.objects.get(label='Release')
-        return super().save(*args, **kwargs)
-
-
 class ExternalLinks(models.Model):
     mod = models.ForeignKey(Mod, related_name='links', on_delete=models.CASCADE)
     issue_tracker = models.URLField(default='', blank=True)
@@ -115,3 +79,63 @@ class ExternalLinks(models.Model):
                 urls.append([field.name, url])
 
         return urls
+
+
+class ReleaseChannel(models.Model):
+    label = models.CharField(max_length=64)
+    color = models.CharField(max_length=7)
+
+    @classmethod
+    def get_default(cls):
+        release_channel, created = cls.objects.get_or_create(
+            label='Release',
+        )
+        return release_channel.pk
+
+    def __str__(self) -> str:
+        return self.label
+
+
+class Loader(models.Model):
+    label = models.CharField(max_length=32)
+
+    def __str__(self) -> str:
+        return self.label
+
+
+class GameVersion(models.Model):
+    label = models.CharField(max_length=16)
+
+    @classmethod
+    def get_latest(cls):
+        return cls.objects.get_or_create(label='1.7.7.0_02')[0].pk
+
+    def __str__(self) -> str:
+        return self.label
+
+
+class Version(models.Model):
+    mod = models.ForeignKey(Mod, related_name='versions', on_delete=models.CASCADE)
+
+    label = models.CharField(max_length=48)
+    slug = models.SlugField(null=False)
+
+    changelog = MarkdownxField(null=True, blank=True)
+    file = models.FileField(upload_to=version_upload_path)
+
+    game_version = models.ForeignKey(GameVersion, related_name='versions', default=GameVersion.get_latest, on_delete=models.CASCADE)
+    loaders = models.ManyToManyField(Loader, related_name='versions')
+    release_channel = models.ForeignKey(ReleaseChannel, related_name='versions', default=ReleaseChannel.get_default, on_delete=models.CASCADE)
+
+    publish = models.DateTimeField(auto_now_add=True)
+    downloads = models.IntegerField(blank=True, default=0)
+
+    class Meta:
+        ordering = ["-publish"]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.label)
+        if not self.release_channel:
+            self.release_channel = ReleaseChannel.objects.get(label='Release')
+        return super().save(*args, **kwargs)

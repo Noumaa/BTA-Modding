@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from mods.models import Mod, Version, Category, ExternalLinks, ReleaseChannel
+from mods.models import Mod, Version, Category, ExternalLinks, ReleaseChannel, Loader, GameVersion
 
 
 def get_choices_for_category():
@@ -23,6 +23,8 @@ class ModSubmitForm(ModForm):
     version_label = forms.CharField()
     version_file = forms.FileField()
     version_release_channel = forms.ModelChoiceField(queryset=ReleaseChannel.objects.all())
+    version_game_version = forms.ModelChoiceField(queryset=GameVersion.objects.all())
+    version_loaders = forms.ModelMultipleChoiceField(queryset=Loader.objects.all())
 
 
 class ModFilterForm(forms.Form):

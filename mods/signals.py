@@ -1,4 +1,4 @@
-from mods.models import Category, ReleaseChannel
+from mods.models import Category, ReleaseChannel, GameVersion, Loader
 
 
 def create_default_categories(sender, **kwargs):
@@ -46,3 +46,27 @@ def create_default_release_channels(sender, **kwargs):
             release.save()
         else:
             ReleaseChannel.objects.get_or_create(label=label, color=color)
+
+
+def create_default_game_versions(sender, **kwargs):
+    default_game_versions = [
+        '1.7.7.0_02',
+        '1.7.7.0_01',
+        '1.7.7.0',
+        '1.7.6.2_02',
+        '1.7.6.2_01',
+        '1.7.6.2',
+    ]
+
+    for label in default_game_versions:
+        GameVersion.objects.get_or_create(label=label)
+
+
+def create_default_loaders(sender, **kwargs):
+    default_loaders = [
+        'Babric',
+        'ASMLoader',
+    ]
+
+    for label in default_loaders:
+        Loader.objects.get_or_create(label=label)

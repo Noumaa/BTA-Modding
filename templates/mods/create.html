@@ -11,31 +11,13 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="flex flex-row gap-6 mb-6">
+            <div class="flex flex-row gap-6 mb-3">
                 <div class="basis-3/4">
                     <label for="label" class="block mb-2 text-sm font-medium text-white">Mod name<span class="text-red-500">*</span></label>
                     <input type="text" name="label" id="id_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Too Many Items" required>
                     {{ form.label.errors }}
-                </div>
-                <div class="basis-1/4">
-                    <label for="version_label" class="block mb-2 text-sm font-medium text-white">Version<span class="text-red-500">*</span></label>
-                    <input type="text" name="version_label" id="id_version_label"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="1.0" required>
-                    {{ form.label.errors }}
-                </div>
-            </div>
-
-            <div class="flex flex-row gap-6 mb-3">
-                <div class="basis-3/4">
-                    <label for="short_description" class="block mb-2 text-sm font-medium text-white">Short
-                        description<span class="text-red-500">*</span></label>
-                    <input type="text" name="short_description" id="id_short_description"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Offers you to see all items in Minecraft" required>
-                    {{ form.short_description.errors }}
                 </div>
 
                 <div class="basis-1/4">
@@ -46,6 +28,25 @@
                            aria-describedby="file_input_help" name="logo" id="id_logo" type="file">
                     <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 1024x1024px).</p>
                     {{ form.logo.errors }}
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-6 mb-6">
+                <div class="basis-3/4">
+                    <label for="short_description" class="block mb-2 text-sm font-medium text-white">Short
+                        description<span class="text-red-500">*</span></label>
+                    <input type="text" name="short_description" id="id_short_description"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="Offers you to see all items in Minecraft" required>
+                    {{ form.short_description.errors }}
+                </div>
+
+                <div class="basis-1/4">
+                    <label for="version_label" class="block mb-2 text-sm font-medium text-white">Version<span class="text-red-500">*</span></label>
+                    <input type="text" name="version_label" id="id_version_label"
+                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                           placeholder="1.0" required>
+                    {{ form.label.errors }}
                 </div>
             </div>
 
@@ -71,8 +72,8 @@
                 </div>
             </div>
 
-            <div class="mb-6 flex">
-                <div class="basis-1/3">
+            <div class="mb-6 flex flex-row gap-6">
+                <div class="basis-1/4">
                     <label class="block mb-2 text-sm font-medium text-white" for="version_file">Categories<span class="text-red-500">*</span></label>
                     {% for choice_id, choice_label in form.fields.categories.choices %}
                         <div class="mt-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]">
@@ -100,7 +101,7 @@
                     {{ form.categories.errors }}
                 </div>
 
-                <div class="basis-2/3">
+                <div class="basis-1/4">
                     <p class="block mb-2 text-sm font-medium text-white">External links</p>
 
                     <div class="flex flex-row align-baseline items-baseline gap-2">
@@ -142,6 +143,26 @@
                         </label>
                         <input type="url" name="donation_links" maxlength="200" id="id_donation_links" value="{{ links_form.donation_links.value }}">
                     </div>
+                </div>
+
+                <div class="basis-1/4">
+                    <label class="block mb-2 text-sm font-medium text-white" for="id_version_loaders">Loader(s)<span class='text-red-500'>*</span></label>
+                    <select multiple name="version_loaders" id="id_version_loaders" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
+                        {# TODO dynamic loaders display #}
+                        <option value="1">Babric</option>
+                        <option value="2">ASMLoader</option>
+                    </select>
+                    {{ form.version_loaders.errors }}
+                </div>
+
+                <div class="basis-1/4">
+                    <label for="version_game_version" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game version<span class='text-red-500'>*</span></label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="version_game_version" id="id_version_game_version">
+                        {% for game_version_pk, game_version in game_versions %}
+                            <option value="{{ game_version_pk }}">{{ game_version }}</option>
+                        {% endfor %}
+                    </select>
+                    {{ form.version_game_version.errors }}
                 </div>
 
             </div>

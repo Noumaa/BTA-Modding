@@ -10,4 +10,6 @@ class ModsConfig(AppConfig):
         from mods import signals
         post_migrate.connect(signals.create_default_categories, sender=self)
         post_migrate.connect(signals.create_default_release_channels, sender=self)
+        post_migrate.connect(signals.create_default_game_versions, sender=self)
+        post_migrate.connect(signals.create_default_loaders, sender=self)
         return super().ready()

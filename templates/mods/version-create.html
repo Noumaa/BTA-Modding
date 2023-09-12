@@ -11,6 +11,7 @@
                     <input type="text" name="label" id="id_label"
                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                            placeholder="Previous: {{ versions.first.label }}" required>
+                    {{ form.label.errors }}
                 </div>
 
                 <div class="basis-1/4">
@@ -20,16 +21,39 @@
                         <option value="2">Beta</option>
                         <option value="3">Alpha</option>
                     </select>
+                    {{ form.release_channel.errors }}
                 </div>
             </div>
 
-            <div class="mb-6">
-                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file">Upload file<span class='text-red-500'>*</span></label>
-                <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
+            <div class="mb-6 flex flex-row gap-6">
+                <div class="basis-2/4">
+                    <label class="block mb-2 text-sm font-medium text-white" for="file">Upload file<span class='text-red-500'>*</span></label>
+                    <input class="block p-2 w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer
                               bg-gray-50 dark:text-gray-400 focus:outline-none
                               dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                       aria-describedby="file_input_help" name="file" id="id_file" type="file">
-                {#                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>#}
+                           aria-describedby="file_input_help" name="file" id="id_file" type="file">
+                    {{ form.file.errors }}
+                </div>
+
+                <div class="basis-1/4">
+                    <label for="game_version" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Game version<span class='text-red-500'>*</span></label>
+                    <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="game_version" id="id_game_version">
+                        {% for game_version_pk, game_version in game_versions %}
+                            <option value="{{ game_version_pk }}">{{ game_version }}</option>
+                        {% endfor %}
+                    </select>
+                    {{ form.game_version.errors }}
+                </div>
+
+                <div class="basis-1/4">
+                    <label class="block mb-2 text-sm font-medium text-white" for="id_loaders">Loader(s)<span class='text-red-500'>*</span></label>
+                    <select multiple name="loaders" id="id_loaders" class="border text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500">
+                        {# TODO dynamic loaders display #}
+                        <option value="1">Babric</option>
+                        <option value="2">ASMLoader</option>
+                    </select>
+                    {{ form.loaders.errors }}
+                </div>
             </div>
 
             <div class="mb-6">
@@ -145,6 +169,7 @@
                                   placeholder="Write a changelog... (Required)" required></textarea>
                     </div>
                 </div>
+                {{ form.changelog.errors }}
             </div>
 
             <button type="submit"

@@ -4,7 +4,7 @@ from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
 
 from mods.forms import ModForm, VersionSubmitForm, ModFilterForm, ExternalLinksForm, ModSubmitForm
-from mods.models import Mod, Version
+from mods.models import Mod, Version, GameVersion, Loader
 from users.models import User
 
 
@@ -52,8 +52,12 @@ def mods_create(request):
                 label=mod_form.cleaned_data['version_label'],
                 file=mod_form.cleaned_data['version_file'],
                 release_channel=mod_form.cleaned_data['version_release_channel'],
+                game_version=mod_form.cleaned_data['version_game_version'],
             )
             version.save()
+
+            for loader in mod_form.cleaned_data['version_loaders']:
+                version.loaders.add(loader.pk)
 
             links = links_form.save(commit=False)
             links.mod = mod
@@ -63,9 +67,12 @@ def mods_create(request):
 
             return redirect('mods:detail', username=request.user.username, mod_slug=mod.slug)
 
+    game_versions = [[version.pk, version.label] for version in GameVersion.objects.all()]
+
     return render(request, 'mods/create.html', {
         'form': mod_form,
         'links_form': links_form,
+        'game_versions': game_versions,
     })
 
 
@@ -157,13 +164,18 @@ def version_create(request, username, mod_slug):
             version.mod = mod
             version.save()
 
+            form.save_m2m()
+
             messages.success(request, "Mod updated!")
             return redirect('mods:version-detail', username=username, mod_slug=mod_slug, version_slug=version.slug)
+
+    game_versions = [[version.pk, version.label] for version in GameVersion.objects.all()]
 
     return render(request, 'mods/version-create.html', {
         'mod': mod,
         'form': form,
         'versions': mod.versions.all(),
+        'game_versions': game_versions,
     })
 
 
