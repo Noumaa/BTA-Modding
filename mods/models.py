@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 from django.conf import settings
 
+from mods.slugify import unique_slugify
+
 
 def version_upload_path(instance, filename):
     return f'mods/{instance.mod.pk}/{instance.slug}/{filename}'
@@ -47,7 +49,7 @@ class Mod(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.label)
+            unique_slugify(self, self.label)
         return super().save(*args, **kwargs)
 
     def get_downloads(self):
