@@ -37,7 +37,7 @@
 </head>
 <body>
 <header>
-    <nav class="container mx-auto">
+    <nav class="container mx-auto md:block hidden">
         <div class="flex flex-wrap items-center justify-between mx-auto p-3">
             <a href="{% url 'home:home' %}" class="flex items-center">
                 <img src="{% static 'assets/images/logo.png' %}" class="h-8 mr-3" alt="BTA Modding logo"/>
@@ -118,7 +118,7 @@
                 {% endif %}
             </div>
             <button data-collapse-toggle="navbar-cta" type="button"
-                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                     aria-controls="navbar-cta" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -145,10 +145,30 @@
             </div>
         </div>
     </nav>
-
+    <div class="fixed bottom-0 left-0 right-0 bg-backgrounddark shadow-2xl rounded-t-3xl p-4 flex justify-around block md:hidden">
+        <a href="{% url 'home:home' %}" class="rounded-full">
+            <img src="{% static 'assets/images/logo.png' %}" alt="BTA Modding logo" class="h-10 w-10">
+        </a>
+        <a href="{% url 'mods:list' %}" class="rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+            </svg>
+        </a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'users:profile' user.username %}" class="rounded-full">
+                <img src="{{ user.avatar.url }}" alt="{{ user.username }} avatar" class="h-9 w-9">
+            </a>
+        {% else %}
+            <a href="{% url 'users:login' %}" class="rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"></path>
+                </svg>
+            </a>
+        {% endif %}
+    </div>
 </header>
 
-<main class="container mx-auto">
+<main class="container mx-auto md:mt-0 mt-5">
     {% block content %}
     {% endblock %}
 </main>
