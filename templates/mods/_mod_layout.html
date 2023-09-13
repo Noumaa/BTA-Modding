@@ -106,7 +106,7 @@
                 <h2 class="text-lg font-bold pt-2">Featured versions</h2>
                 <ul class="my-3 max-w-md">
                     {% for version in mod.versions.all %}
-                        <li class="p-2 sm:mb-4 hover:bg-backgrounddark rounded-xl">
+                        <li class="p-2 hover:bg-backgrounddark rounded-xl">
                             <div class="flex items-start space-x-4 align-top">
                                 <div class="flex flex-row">
                                     <a href="{% url 'mods:version-download' mod.user.username mod.slug version.slug %}"
