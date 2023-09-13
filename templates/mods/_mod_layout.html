@@ -148,12 +148,12 @@
         <div class="basis-3/4 md:mt-0 mt-4">
             <div class="p-5 mb-4 bg-card rounded-xl shadow-lg">
 
-                <ul class="flex flex-col md:flex-row gap-3">
+                <ul class="flex flex-row gap-6">
                     {% url 'mods:detail' mod.user.username mod.slug as detail_url %}
                     {% url 'mods:version-list' mod.user.username mod.slug as version_url %}
-                    <li><a class="{% if detail_url == request.path %}text-white{% endif %}" href="{{ detail_url }}">Description</a>
+                    <li><a class="{% if detail_url == request.path %}text-white underline decoration-4 decoration-blue-600{% endif %}" href="{{ detail_url }}">Description</a>
                     </li>
-                    <li><a class="{% if version_url == request.path %}text-white{% endif %}" href="{{ version_url }}">Versions</a>
+                    <li><a class="{% if version_url == request.path %}text-white underline decoration-4 decoration-blue-600{% endif %}" href="{{ version_url }}">Versions</a>
                     </li>
                 </ul>
 
