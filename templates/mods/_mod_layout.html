@@ -9,7 +9,7 @@
 
 {% block content %}
 
-    <div class="flex flex-row gap-3">
+    <div class="md:flex gap-3 md:mx-0 mx-4">
         <aside class="basis-1/4">
             <div class="p-5 bg-card rounded-xl shadow-lg">
                 {% if user == mod.user %}
@@ -104,9 +104,9 @@
                 {% endif %}
 
                 <h2 class="text-lg font-bold pt-2">Featured versions</h2>
-                <ul class="mt-3 max-w-md">
+                <ul class="my-3 max-w-md">
                     {% for version in mod.versions.all %}
-                        <li class="p-2 mb-2 sm:mb-4 hover:bg-backgrounddark rounded-xl">
+                        <li class="p-2 sm:mb-4 hover:bg-backgrounddark rounded-xl">
                             <div class="flex items-start space-x-4 align-top">
                                 <div class="flex flex-row">
                                     <a href="{% url 'mods:version-download' mod.user.username mod.slug version.slug %}"
@@ -145,7 +145,7 @@
                 </a>
             </div>
         </aside>
-        <div class="basis-3/4">
+        <div class="basis-3/4 md:mt-0 mt-4">
             <div class="p-5 mb-4 bg-card rounded-xl shadow-lg">
 
                 <ul class="flex flex-col md:flex-row gap-3">

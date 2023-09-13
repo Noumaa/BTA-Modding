@@ -641,6 +641,14 @@ video {
   z-index: 20;
 }
 
+.order-2 {
+  order: 2;
+}
+
+.order-last {
+  order: 9999;
+}
+
 .float-left {
   float: left;
 }
@@ -678,6 +686,11 @@ video {
 .my-4 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .-ml-\[1\.5rem\] {
@@ -2122,6 +2135,10 @@ video {
 
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:mt-4 {
+    margin-top: 1rem;
   }
 
   .md\:block {
