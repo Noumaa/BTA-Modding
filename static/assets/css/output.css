@@ -2161,6 +2161,10 @@ video {
     flex-basis: 75%;
   }
 
+  .md\:basis-1\/4 {
+    flex-basis: 25%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }
