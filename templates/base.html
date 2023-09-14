@@ -34,8 +34,11 @@
     <link rel="stylesheet" href="{% static 'assets/css/output.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/markdown.css' %}">
 
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="preload" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"></noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"></noscript>
 
 </head>
 <body>
