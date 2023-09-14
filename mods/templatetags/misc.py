@@ -42,10 +42,16 @@ def meta_description(context):
         description = 'Discover and share Minecraft mods for Better Than Adventure!'
 
     try:
+        title = context['meta_title']
+    except KeyError:
+        title = "BTA Modding"
+
+    try:
         image = context['meta_image']
     except KeyError:
         image = static('assets/images/logo.png')
 
     return mark_safe(f'<meta name="description" content="{description}" />'
+                     f'<meta name="og:title" content="{title}" />'
                      f'<meta name="og:image" content="{image}" />'
                      f'<meta name="og:description" content="{description}" />')

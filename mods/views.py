@@ -89,6 +89,7 @@ def mods_detail(request, username, mod_slug):
         'mod': mod,
         'versions': mod.versions.all(),
         'version': 'none',
+        'meta_title': mod.label + ' - Minecraft Mod',
         'meta_description': mod.short_description,
         'meta_image': mod.logo.url,
     })
