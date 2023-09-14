@@ -49,5 +49,8 @@ def profile(request, username):
 
     return render(request, 'users/profile.html', {
         'target_user': target_user,
-        'downloads': downloads
+        'downloads': downloads,
+        'meta_title': target_user.username,
+        'meta_description': f"Download {target_user.username}'s mods on BTA Modding",
+        'meta_image': target_user.avatar.url,
     })
