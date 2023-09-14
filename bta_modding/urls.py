@@ -4,9 +4,10 @@ from django.contrib.sitemaps.views import sitemap
 from django.urls import path, include
 
 from bta_modding import settings
-from bta_modding.sitemaps import ModSitemap
+from bta_modding.sitemaps import ModSitemap, StaticSitemap
 
 sitemaps = {
+    'static': StaticSitemap,
     'mods': ModSitemap,
 }
 

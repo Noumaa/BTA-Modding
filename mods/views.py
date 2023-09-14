@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
+from django.templatetags.static import static
 
 from mods.forms import ModForm, VersionSubmitForm, ModFilterForm, ExternalLinksForm, ModSubmitForm
 from mods.models import Mod, Version, GameVersion, Loader
@@ -29,7 +30,8 @@ def mods_list(request):
 
     return render(request, 'mods/list.html', {
         'mods': mods,
-        'form': form
+        'form': form,
+        'meta_description': 'Search and browse thousands of Minecraft Mods on BTA Modding with instant, accurate search results. Our filters help you quickly find the best Minecraft Mods for Better Than Adventure!'
     })
 
 
@@ -86,7 +88,9 @@ def mods_detail(request, username, mod_slug):
     return render(request, 'mods/detail.html', {
         'mod': mod,
         'versions': mod.versions.all(),
-        'version': 'none'
+        'version': 'none',
+        'meta_description': mod.short_description,
+        'meta_image': mod.logo.url,
     })
 
 
