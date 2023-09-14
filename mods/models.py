@@ -21,6 +21,9 @@ class Category(models.Model):
     slug = models.SlugField(null=False, unique=True)
     icon = models.TextField()
 
+    def __str__(self):
+        return self.label
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.label)
@@ -44,6 +47,9 @@ class Mod(models.Model):
     class Meta:
         ordering = ["-publish"]
 
+    def __str__(self):
+        return self.label
+
     def get_absolute_url(self):
         return f"/{self.user.username}/{self.slug}/"
 
@@ -51,6 +57,11 @@ class Mod(models.Model):
         if not self.slug:
             unique_slugify(self, self.label)
         return super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.logo.delete(save=False)
+        self.logo.delete(save=False)
+        super().delete(args, kwargs)
 
     def get_downloads(self):
         count = 0
@@ -137,6 +148,9 @@ class Version(models.Model):
 
     class Meta:
         ordering = ["-publish"]
+
+    def __str__(self):
+        return self.label
 
     def save(self, *args, **kwargs):
         if not self.slug:
