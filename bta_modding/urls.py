@@ -16,7 +16,10 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('home.urls')),
     path('', include('mods.urls')),
+    path('api/', include('api.urls')),
     path('markdownx/', include('markdownx.urls')),
+
+
     path(
         "sitemap.xml",
         sitemap,

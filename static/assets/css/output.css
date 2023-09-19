@@ -1459,10 +1459,6 @@ video {
   text-decoration-color: #2563eb;
 }
 
-.decoration-sky-500 {
-  text-decoration-color: #0ea5e9;
-}
-
 .decoration-4 {
   text-decoration-thickness: 4px;
 }
@@ -2159,10 +2155,6 @@ video {
 
   .md\:basis-3\/4 {
     flex-basis: 75%;
-  }
-
-  .md\:basis-1\/4 {
-    flex-basis: 25%;
   }
 
   .md\:flex-row {
