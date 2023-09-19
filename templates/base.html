@@ -1,3 +1,4 @@
+{% load misc %}
 {% load static %}
 <!doctype html>
 <html lang="en">
@@ -14,15 +15,17 @@
 
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+          content="width=device-width, initial-scale=1.0, maximum-scale=2.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
     <meta name="robots" content="index,follow" />
+
     <meta name="author" content="Nouma" />
 
-    <meta property="og:title" content="BTA Modding" />
-    <meta property="og:description" content="Discover and share Minecraft mods for Better Than Adventure!" />
-    <meta property="og:image" content="{% static 'assets/images/logo.png' %}" />
+    {% meta_description %}
+
+    <meta name="theme-color" content="#2563EB">
+    <meta name="og:site_name" content="BTA Modding" />
+    <meta name="og:type" content="website">
 
     <link rel="icon" type="image/png" href="{% static 'assets/images/logo.png' %}"/>
     <title>{% block title %}BTA Modding{% endblock %}</title>
@@ -31,8 +34,11 @@
     <link rel="stylesheet" href="{% static 'assets/css/output.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/markdown.css' %}">
 
-    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="preload" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css"></noscript>
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"></noscript>
 
 </head>
 <body>

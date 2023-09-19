@@ -5,19 +5,24 @@ from django.utils.translation import gettext_lazy as _
 
 from django.conf import settings
 
+from mods.slugify import unique_slugify
+
 
 def version_upload_path(instance, filename):
-    return f'mods/{instance.mod.pk}/{instance.slug}/{filename}'
+    return f'mods/{instance.mod.slug}/{instance.slug}/{filename}'
 
 
 def avatar_upload_path(instance, filename):
-    return f'mods/{instance.pk}/{filename}'
+    return f'mods/{instance.slug}/{filename}'
 
 
 class Category(models.Model):
     label = models.CharField(max_length=48)
     slug = models.SlugField(null=False, unique=True)
     icon = models.TextField()
+
+    def __str__(self):
+        return self.label
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -42,13 +47,21 @@ class Mod(models.Model):
     class Meta:
         ordering = ["-publish"]
 
+    def __str__(self):
+        return self.label
+
     def get_absolute_url(self):
         return f"/{self.user.username}/{self.slug}/"
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.label)
+            unique_slugify(self, self.label)
         return super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        self.logo.delete(save=False)
+        self.logo.delete(save=False)
+        super().delete(args, kwargs)
 
     def get_downloads(self):
         count = 0
@@ -135,6 +148,9 @@ class Version(models.Model):
 
     class Meta:
         ordering = ["-publish"]
+
+    def __str__(self):
+        return self.label
 
     def save(self, *args, **kwargs):
         if not self.slug:
