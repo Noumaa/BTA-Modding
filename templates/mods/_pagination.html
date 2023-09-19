@@ -13,8 +13,10 @@
 
         {% if page_obj.has_next %}
             <a class="rounded-3xl p-2 px-4 bg-card" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
-            —
-            <a class="rounded-3xl p-2 px-4 bg-card" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% if page_obj.next_page_number != page_obj.paginator.num_pages %}
+                —
+                <a class="rounded-3xl p-2 px-4 bg-card" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
         {% endif %}
 
     </span>
