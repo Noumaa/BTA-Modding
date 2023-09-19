@@ -2,37 +2,44 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Max
 from django.shortcuts import render, get_object_or_404, redirect
-from django.templatetags.static import static
+from django.views.generic import ListView
 
 from mods.forms import ModForm, VersionSubmitForm, ModFilterForm, ExternalLinksForm, ModSubmitForm
-from mods.models import Mod, Version, GameVersion, Loader
+from mods.models import Mod, Version, GameVersion
 from users.models import User
 
 
-# Create your views here.
-def mods_list(request):
-    mods = Mod.objects.all()
-    form = ModFilterForm(request.GET)
+class ModListView(ListView):
+    model = Mod
+    paginate_by = 10
 
-    if form.is_valid():
-        query = form.cleaned_data['query']
-        categories = form.cleaned_data['categories']
+    def get_queryset(self):
+        mods = Mod.objects.all()
+        form = ModFilterForm(self.request.GET)
 
-        if query:
-            mods = mods.filter(Q(label__icontains=query) | Q(short_description__icontains=query))
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            categories = form.cleaned_data['categories']
 
-        if categories:
-            mods = mods.filter(categories__in=categories)
+            if query:
+                mods = mods.filter(Q(label__icontains=query) | Q(short_description__icontains=query))
 
-    mods = mods \
-        .annotate(last_version_publish=Max('versions__publish')) \
-        .order_by('-last_version_publish')
+            if categories:
+                mods = mods.filter(categories__in=categories)
 
-    return render(request, 'mods/list.html', {
-        'mods': mods,
-        'form': form,
-        'meta_description': 'Search and browse thousands of Minecraft Mods on BTA Modding with instant, accurate search results. Our filters help you quickly find the best Minecraft Mods for Better Than Adventure!'
-    })
+        mods = mods \
+            .annotate(last_version_publish=Max('versions__publish')) \
+            .order_by('-last_version_publish')
+
+        return mods
+
+    def get_context_data(self, **kwargs):
+        form = ModFilterForm(self.request.GET)
+
+        context = super().get_context_data(**kwargs)
+        context['form'] = form
+        context['meta_description'] = 'Search and browse thousands of Minecraft Mods on BTA Modding with instant, accurate search results. Our filters help you quickly find the best Minecraft Mods for Better Than Adventure!'
+        return context
 
 
 @login_required

@@ -693,6 +693,10 @@ video {
   margin-top: -0.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -1048,6 +1052,10 @@ video {
 
 .rounded-2xl {
   border-radius: 1rem;
+}
+
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 
 .rounded-\[0\.25rem\] {
@@ -1457,10 +1465,6 @@ video {
 
 .decoration-blue-600 {
   text-decoration-color: #2563eb;
-}
-
-.decoration-sky-500 {
-  text-decoration-color: #0ea5e9;
 }
 
 .decoration-4 {
@@ -2159,10 +2163,6 @@ video {
 
   .md\:basis-3\/4 {
     flex-basis: 75%;
-  }
-
-  .md\:basis-1\/4 {
-    flex-basis: 25%;
   }
 
   .md\:flex-row {
