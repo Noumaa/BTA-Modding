@@ -204,3 +204,17 @@ def version_download(request, username, mod_slug, version_slug):
         'version': version,
         'versions': mod.versions.all(),
     })
+
+
+@login_required
+def mods_setting(request, username, mod_slug):
+    user = get_object_or_404(User, username=username)
+    mod = get_object_or_404(Mod, slug=mod_slug, user=user)
+
+    if mod.user != request.user:
+        messages.error(request, 'Can\'t edit other resources!')
+        return redirect('mods:detail', username, mod_slug)
+
+    return render(request, 'mods/settings.html', {
+        'mod': mod,
+    })

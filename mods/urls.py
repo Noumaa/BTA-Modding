@@ -9,7 +9,9 @@ urlpatterns = [
     path('mods/publish', views.mods_create, name='create'),
 
     path('<str:username>/<slug:mod_slug>', views.mods_detail, name='detail'),
-    path('<str:username>/<slug:mod_slug>/settings', views.mods_edit, name='edit'),
+
+    path('<str:username>/<slug:mod_slug>/settings', views.mods_edit, name='settings'),
+    path('<str:username>/<slug:mod_slug>/settings/general', views.mods_edit, name='edit'),
 
     path('<str:username>/<slug:mod_slug>/versions', views.version_list, name='version-list'),
     path('<str:username>/<slug:mod_slug>/versions/publish', views.version_create, name='version-create'),

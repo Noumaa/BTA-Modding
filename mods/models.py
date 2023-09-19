@@ -30,7 +30,6 @@ class Category(models.Model):
         return super().save(*args, **kwargs)
 
 
-# Create your models here.
 class Mod(models.Model):
     label = models.CharField(max_length=48)
     logo = models.ImageField(upload_to=avatar_upload_path, default="mod_default.png")
