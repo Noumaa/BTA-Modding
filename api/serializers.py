@@ -13,7 +13,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class ModSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Mod
-        fields = ['slug', 'label', 'short_description']
+        fields = ['pk', 'slug', 'label', 'short_description']
 
 
 class VersionSerializer(serializers.HyperlinkedModelSerializer):
