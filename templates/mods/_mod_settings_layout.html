@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="md:flex gap-3 md:mx-0 mx-4">
+        <aside class="basis-1/4">
+            <div class="p-5 bg-card rounded-xl shadow-lg ">
+
+                <div class="flex flex-row gap-3">
+                    <img class="w-12 h-12 bg-background rounded-2xl" src="{{ mod.logo.url }}" alt="{{ mod.label }} Logo">
+                    <div>
+                        <p class="font-bold text-white">{{ mod.label }}</p>
+                        <p>{{ mod.label }}</p>
+                    </div>
+                </div>
+
+                <h1>Project settings</h1>
+                <a href="{% url 'mods:edit' mod.user.username mod.slug %}">General</a>
+
+            </div>
+        </aside>
+        <div class="basis-3/4 md:mt-0 mt-4">
+
+            {% block main %}{% endblock %}
+
+{#            <div class="p-5 bg-card rounded-xl shadow-lg grid grid-cols-3 gap-5">#}
+{#                <div class="p-5 bg-[#16181c] rounded-xl shadow-lg">#}
+{##}
+{#                </div>#}
+{#            </div>#}
+
+        </div>
+    </div>
+
+{% endblock %}
