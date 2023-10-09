@@ -17,9 +17,18 @@ def avatar_upload_path(instance, filename):
 
 
 class Category(models.Model):
+    class Type(models.TextChoices):
+        FEATURE = "FE", _("Feature")
+        SIDE = "SI", _("Side")
+
     label = models.CharField(max_length=48)
     slug = models.SlugField(null=False, unique=True)
     icon = models.TextField()
+    type = models.CharField(
+        max_length=2,
+        choices=Type.choices,
+        default=Type.FEATURE,
+    )
 
     def __str__(self):
         return self.label
