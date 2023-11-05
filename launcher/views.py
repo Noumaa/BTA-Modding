@@ -34,6 +34,8 @@ def upload(request):
 
 def api_version(request):
     launcher = Launcher.objects.first()
+    if launcher is None:
+        return JsonResponse({"code": 404, "message": "No launcher available."})
 
     return JsonResponse({
         "version": launcher.version,
