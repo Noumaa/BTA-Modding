@@ -42,10 +42,61 @@
             </div>
         </aside>
         <div class="basis-3/4">
-            <div class="py-4 px-4 md:mt-0 mt-4 bg-card rounded-xl shadow-lg">
-                <p class="italic">need to put mod list here..</p>
+            <div class="p-5 mb-4 bg-card rounded-xl shadow-lg">
+                <a id="modsLink" href="#" onclick="openTab('mods')" class="text-white underline decoration-4 decoration-blue-600">Mods</a>
+            </div>
+
+            <div id="mods">
+                {% for mod in mods %}
+                    <div class="my-3 py-4 px-4 bg-card rounded-xl shadow-lg flex ">
+                        <a class="basis-28" href="{% url 'mods:detail' mod.user.username mod.slug %}">
+                            <img class="bg-background rounded-xl w-28" src="{{ mod.logo.url }}" alt="{{ mod.label }} logo" />
+                        </a>
+                        <div class="ps-4">
+                            <div class="title flex flex-col md:flex-row items-baseline md:gap-2">
+                                <a href="{% url 'mods:detail' mod.user.username mod.slug %}">
+                                    <h2 class="text-2xl font-bold">{{ mod.label }}</h2>
+                                </a>
+                            </div>
+                            <p class="max-w-sm lg:max-w-3xl">{{ mod.short_description }}</p>
+
+                            <div class="flex flex-rows flex-wrap gap-3 mt-2">
+                                {% for category in mod.categories.all %}
+                                    <div class="flex flex-rows items-center">
+                                        {{ category.icon|safe }}
+                                        <p class="font-normal text-gray-400 inline-block pl-[0.15rem]">{{ category.label }}</p>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% empty %}
+                    <div class="my-3 py-4 px-4 bg-card rounded-xl shadow-lg flex justify-start">
+                        <h2>No mods matches the given query</h2>
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block extrascript %}
+
+    <script>
+        const tabs = [
+            "mods"
+        ];
+
+        function openTab(id) {
+            document.getElementById(id).classList.remove("hidden");
+            document.getElementById(id+"Link").classList.add("text-white", "underline", "decoration-4", "decoration-blue-600");
+            tabs.forEach((tab) => {
+                if (tab === id) return;
+                document.getElementById(tab).classList.add('hidden')
+                document.getElementById(tab+"Link").classList.remove("text-white", "underline", "decoration-4", "decoration-blue-600");
+            });
+        }
+    </script>
 
 {% endblock %}

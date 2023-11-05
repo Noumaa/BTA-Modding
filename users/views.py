@@ -47,9 +47,12 @@ def profile(request, username):
     for mod in Mod.objects.filter(user=target_user):
         downloads += mod.get_downloads()
 
+    mods = Mod.objects.filter(user=target_user)
+
     return render(request, 'users/profile.html', {
         'target_user': target_user,
         'downloads': downloads,
+        'mods': mods,
         'meta_title': target_user.username,
         'meta_description': f"Download {target_user.username}'s mods on BTA Modding",
         'meta_image': target_user.avatar.url,
