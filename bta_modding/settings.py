@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'home.apps.HomeConfig',
     'mods.apps.ModsConfig',
+    'launcher.apps.LauncherConfig',
     'api.apps.ApiConfig',
     'markdownx',
     'rest_framework',

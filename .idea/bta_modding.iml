@@ -20,6 +20,7 @@
       <excludeFolder url="file://$MODULE_DIR$/media/mods/8" />
       <excludeFolder url="file://$MODULE_DIR$/media/mods/9" />
       <excludeFolder url="file://$MODULE_DIR$/media/mods" />
+      <excludeFolder url="file://$MODULE_DIR$/media/launcher/dsqdsqdsqd" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

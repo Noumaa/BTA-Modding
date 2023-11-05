@@ -16,6 +16,7 @@ urlpatterns = [
     path('', include('users.urls')),
     path('', include('home.urls')),
     path('', include('mods.urls')),
+    path('', include('launcher.urls')),
     path('api/', include('api.urls')),
     path('markdownx/', include('markdownx.urls')),
 

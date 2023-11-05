@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Update launcher{% endblock %}
+
+{% block content %}
+
+    {{ form.errors }}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-6">
+            <label for="version" class="block mb-2 text-sm font-medium text-white">Version</label>
+            {{ form.version }}
+            {{ form.version.errors }}
+{#            <input type="email" id="email"#}
+{#                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"#}
+{#                   placeholder="name@flowbite.com" required>#}
+        </div>
+        <div class="mb-6">
+            <label for="file" class="block mb-2 text-sm font-medium text-white">File</label>
+            {{ form.file }}
+            {{ form.file.errors }}
+        </div>
+        <div class="mb-6">
+            <label for="changelog" class="block mb-2 text-sm font-medium text-white">Changelog</label>
+            {{ form.changelog }}
+            {{ form.changelog.errors }}
+        </div>
+        <button type="submit" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">Submit</button>
+    </form>
+
+{% endblock %}
