@@ -52,6 +52,7 @@ def create_default_release_channels(sender, **kwargs):
 
 def create_default_game_versions(sender, **kwargs):
     default_game_versions = [
+        '7.1',
         '1.7.7.0_02',
         '1.7.7.0_01',
         '1.7.7.0',
