@@ -13,6 +13,9 @@
                 <th>
                     Date
                 </th>
+                <th>
+                    BTA version
+                </th>
             </tr>
             {% for version in versions %}
                 <tr>
@@ -30,6 +33,9 @@
                     </td>
                     <td>
                         {{ version.publish }}
+                    </td>
+                    <td>
+                        {{ version.game_version }}
                     </td>
                 </tr>
             {% endfor %}
